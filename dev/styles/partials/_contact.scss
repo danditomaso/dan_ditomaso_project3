@@ -1,0 +1,47 @@
+ //*********************
+//CONTACT US FILE
+//*********************
+  
+//  Main START
+.main {
+  background: $whiteShadeColor;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+}
+//  Main END
+//  Aside START
+.aside {
+  width: 17vw;
+  margin-right: 30px;
+}
+.aside__contact-address {
+  width: 60%;
+  font-family: 'Oswald', sans-serif;
+  // font-size: 2rem;
+  padding: 2rem 0;
+  &--larger {
+    font-weight: bold;
+  }
+}
+
+.contact-info__social-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 75%; 
+  .fab {
+    color: $duskBlueColor;
+    }
+}
+
+
+// Aside END
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+// Services START
+.services {
+  background: $whiteShadeColor;
+  &__flex {
+
+  }
+  &__text {
+  max-width: 85%;
+  }
+  &__list {
+  display: flex;
+  flex-flow: row wrap;
+  }
+  &__item {
+  flex-basis: calc(50% - 50px);
+  margin-right: 50px;
+  position: relative;
+  display: inline-block;
+  font-weight: 900;
+}
+
+&__item::before {
+  // Circle font awesome
+  color: $primaryColor;
+  content: "\f111";
+  font-family: 'Font Awesome\ 5 Free';
+  font-size: 8rem;
+  z-index: 1;
+  position: relative;
+  @include position(relative, -60%, 0, 0, -15%); 
+  
+}
+  
+  &__item--photo::after {
+    color: $blackSolidColor;
+    content: "\f03e";
+    font-family: 'Font Awesome\ 5 Free';
+    font-size: 5rem;
+    z-index: 10;
+    @include position(absolute, 0, 0, 0, -60px); 
+  }
+   &__item--photo::after {
+    color: $blackSolidColor;
+    content: "\f03e";
+    font-family: 'Font Awesome\ 5 Free';
+    font-size: 5rem;
+    z-index: 10;
+    @include position(absolute, 0, 0, 0, -60px); 
+  }
+   &__item--user::after {
+    color: $blackSolidColor;
+    content: "\f007";
+    font-family: 'Font Awesome\ 5 Free';
+    font-size: 5rem;
+    z-index: 10;
+    @include position(absolute, 0, 0, 0, -60px); 
+  }
+   &__item--tv::after {
+    color: $blackSolidColor;
+    content: "\f26c";
+    font-family: 'Font Awesome\ 5 Free';
+    font-size: 5rem;
+    z-index: 10;
+    @include position(absolute, 0, 0, 0, -60px); 
+  }
+   &__item--phone::after {
+    color: $blackSolidColor;
+    content: "\f095";
+    font-family: 'Font Awesome\ 5 Free';
+    font-size: 5rem;
+    z-index: 10;
+    @include position(absolute, 0, 0, 0, -60px); 
+  }
+}
+// Services END
+@media (max-width: 926px) {
+  .services {
+  &__text {
+  max-width: 85%;
+  }
+  &__list {
+  display: flex;
+  flex-flow: column wrap;
+  }
+  &__item {
+  position: relative;
+  // display: inline-block;
+  font-weight: 900;
+  margin-left: 3rem;
+
+ }
+ &__item::after {
+   font-size: 4rem;
+  @include position(absolute, 0, 0, 0, -8.5%); 
+ }
+ }
+}

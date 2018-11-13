@@ -1,0 +1,131 @@
+$primaryColor: #B9DDE7;
+$accentColor: #F38D8D;
+$blackSolidColor: #171717;
+$greyBlueColor: #68B0C1;
+$duskBlueColor: #227284;
+$whiteShadeColor: #F6F6F6;
+$whiteSolidColor: #FFFFFF;
+
+@mixin primaryFont($size) {
+    font-family: 'Oswald', sans-serif;
+    color: $blackSolidColor;
+    font-size: $size;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
+
+@mixin secondaryFont($size) {
+    font-family: 'Cabin', sans-serif;
+    color: $blackSolidColor;
+    font-size: $size;
+    line-height: 3.2rem;
+}
+@mixin position($type, $top, $right, $bottom, $left) { 
+    position: $type; 
+    top: $top; 
+    right: $right; 
+    bottom: $bottom; 
+    left: $left; 
+}
+@mixin divSpacer($size) {
+  height: $size;
+  background: $whiteShadeColor;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.visuallyhidden { 
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height: 1px; width: 1px; 
+  margin: -1px; padding: 0; border: 0; 
+}
+
+.spacer {
+  @include divSpacer(2vh);
+}
+
+// typography styles
+h1 {
+    @include primaryFont(8rem);
+    line-height: 9.2rem;
+}
+
+h2 {
+    @include primaryFont(4.2rem);
+}
+h3 {
+    @include primaryFont(3.2rem);
+}
+h4 {
+    @include primaryFont(2.4rem);
+}
+
+li {
+    @include primaryFont(2.0rem);
+    line-height: 29px;
+    letter-spacing: 1px;
+}
+p {
+    @include secondaryFont(2.0rem);
+}
+
+input,textarea {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    @include secondaryFont(2.0rem);
+    color: black;
+    display: inline-block;
+}
+
+h1,h2,h3,h4 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn {
+    @include primaryFont(2.0rem);
+    text-align: center;
+    line-height: 3.2rem;
+    letter-spacing: 0.1rem;
+    padding: 1rem 3rem;
+    background: $accentColor;
+    border: 1px transparent;
+    text-decoration: none;
+    transition: background 0.3s ease, border 0.3s ease;
+    &:hover {
+        background: $whiteShadeColor;
+        border: 1px solid $accentColor;
+    }
+}
+img {
+    width: 100%;
+    height: auto; 
+    width: auto; 
+}
+
+
+
+li {
+    list-style: none;
+    text-decoration: none;
+
+}
+section {
+    padding: 75px 0;
+}

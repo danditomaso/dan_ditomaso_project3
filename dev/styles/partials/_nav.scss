@@ -1,0 +1,38 @@
+    .top-nav {
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+    }
+    .top-nav__list  {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        background: $primaryColor;
+        justify-content: center;
+        list-style: none;
+        text-transform: uppercase;
+            .top-nav__item {
+                    padding: 27px;
+                    line-height: 2.9rem;
+                    .top-nav__item--larger {
+                      @include primaryFont(4rem);
+                      &:hover {
+                        color: $whiteShadeColor;
+                      }
+                    }
+                    .top-nav__link {
+                        text-decoration: none;
+                        @include primaryFont(2.0rem);
+                         transition: color 0.3s;
+                        &:hover {
+                        color: $whiteShadeColor;
+                        }
+                    }
+                    
+            }
+          
+}
+
+
+    

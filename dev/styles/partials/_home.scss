@@ -1,0 +1,25 @@
+//*********************
+//HOME FILE
+//*********************
+  
+
+// Image Break START
+.image--break {
+  background: url(../assets/home-image-2.jpg) no-repeat center / cover;
+  min-height: 50vh;
+}
+// Image Break END
+
+
+// Copyright START
+.copyright {
+  background: $blackSolidColor;
+  width: 100%;
+  text-align: center;
+  .copyright__text {
+    color: $whiteSolidColor;
+  }
+}
+// Copyright END
+// Media Queries START
+
