@@ -9,33 +9,49 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz'
         crossorigin='anonymous'>
     <link href="https://fonts.googleapis.com/css?family=Cabin|Oswald:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
 
     <link rel="stylesheet" href="./public/styles/style.css">
 </head>
 
 <body>
     <header>
-        <nav class="nav">
+        <div class="site-title clearfix">
+            <div class="image-container ">
+                <img src="./public/assets/homer-armscrossed.png" alt="">
+            </div>
             <h1>Head Scratchers - Project 3</h1>
+        </div>
+
+    </header>
+    <main class="wrapper flex-container">
+        <div id="quiz-heading">
+            <h3>Head Scratcher Trivia</h3>
+
+        </div>
+        <div id="question-container">
+            <h3>Question Container</h3>
+            <div class="image-container">
+                <img class="question-image" src="./public/assets/zebra.jpg" alt="">
+            </div>
+        </div>
+        <div id="answer-container">
+            <h3>Answer Container</h3>
+
+        </div>
+    </main>
+    <footer class="footer">
+        <nav class="nav">
             <ul class="social-icons">
                 <li>Twitter</li>
                 <li>Github</li>
                 <li>LinkedIn</li>
             </ul>
         </nav>
-    </header>
-    <main>
-        <div class="question-container">
-
-        </div>
-        <div class="answer-container">
-
-        </div>
-    </main>
-    <footer></footer>
+    </footer>
     <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
         crossorigin='anonymous'></script>
-    <script src="./dev/scripts/app.js"></script>
+    <script src="./public/scripts/app.js"></script>
 </body>
 
 </html>
