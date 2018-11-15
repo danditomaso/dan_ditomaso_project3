@@ -1,61 +1,17 @@
 // Header START 
 // Main Header START 
 .main-header {
-  background: $primaryColor;
-  // height: 45vh;
+  background: $backgroundColor;
   position: relative;
-  &__content-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  &__title-container {
-    @include primaryFont(12rem);
-    background: url(../assets/circle-text.png);
-    background-repeat: no-repeat;
-    background-position-y: 30%, center;
-    background-position-x: 100%, center;
-    padding: 4rem 8rem;
-    line-height: 9.2rem;
-    position: relative;
-    color: white;
-   }
-   &__image {
-      -webkit-box-shadow: 15px 15px 0px 0px rgba(255,255,255,1);
-      -moz-box-shadow: 15px 15px 0px 0px rgba(255,255,255,1);
-      box-shadow: 15px 15px 0px 0px rgba(255,255,255,1);
-      width: 80%;
-      margin-bottom: -100px;
-   }
+
+ 
 }
 // Main Header END
 // Secondary Header START
-.secondary-header {
-  background: url(../assets/blog-image-1.jpg) no-repeat center / cover;
-  height: 49vh;
-  position: relative;
-  
-  &__title {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-start;
-    line-height: -55%;
-    @include position(absolute, 100%, 0, 0, 5%);
-  }
-}
-.secondary-header--contact {
-  background: url(../assets/contact-image-1.jpg) no-repeat center / cover;
-}
+
+
 // Header END 
 @media (max-width: 905px) {
   .main-header {
-    &__image {
-      display: none;
-    }
-    
-  &__title-container {
-    background: none;    
-    }
   }
 }
