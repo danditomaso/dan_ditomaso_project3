@@ -2,11 +2,12 @@ const game = {
     correctAnswer: 0,
     wrongAnswer: 0,
     questionContainer: $('.question-container'),
+    fieldsetContainer: $('.options-fieldset')
 };
 
 // Get random question.data
 game.getRandomItem = (array) => {
-    const random = Math.floor(Math.random() * array.length * Math.random());
+    const random = Math.floor(Math.random() * array.length + 1);
     return {
         item: array[random],
         index: random
@@ -21,7 +22,7 @@ game.getRandomQuestion = () => {
         const question = questionReturned.item.question;
         const answer = questionReturned.item.answer;
         const options = questionReturned.item.options;
-        game.displayQuestion(question, options)
+        game.displayQuestion(question, options, answer)
     }
     // questionReturned.forEach(question => {
     //     console.log(question)
@@ -31,13 +32,18 @@ game.getRandomQuestion = () => {
 
 }
 
-game.displayQuestion = (question, options) => {
-    console.log(options)
-    game.questionContainer.append(`<h2>Question</h2><p>${question}</p>`)
-    game.questionContainer.append(`<ul></ul>`)
+game.displayQuestion = (question, options, answer) => {
+    // console.log(options)
+    game.questionContainer.append(`<h2>Question</h2><p>${question}</p><form>`)
     for (let option of options) {
-        console.log(option);
-        game.questionContainer.append(`<li>${option}</li>`)
+        console.log(answer);
+
+        // TODO: FIX issue where answer is shown as value of checkbox, need to grab [i] value from each option and add it to value
+        const optionHTML = (`
+        <label class="option-item" for="${option}">${option}</label>
+        <input type="radio" name="quiz-options" class="visuallyhidden" id="${option}" value="${answer}">
+        `)
+        game.questionContainer.append(optionHTML)
     };
 
     // game.questionContainer.append(`<h2>Question</h2><div>${question}</div>`)

@@ -82,7 +82,7 @@ p,li {
 }
 
   
-p,li  {
+p,label {
     @include secondaryFont(2.0rem);
     padding: 10px;
 }
