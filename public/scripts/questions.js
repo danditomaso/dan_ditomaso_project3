@@ -1,4 +1,4 @@
-const gameQuestions = {
+triviaQuestionsData = {
     /// Simpsons gameQuestions
     data: [
         {
@@ -8,16 +8,9 @@ const gameQuestions = {
                 "Ned Flanders",
                 "Principal Skinner"
             ],
-            "answer": "1"
-        },
-        {
-            "question": "What is the name of the Simpsons' next door neighbor?",
-            "options": [
-                "Barney Gumble",
-                "Ned Flanders",
-                "Principal Skinner"
-            ],
-            "answer": "2"
+            "answer": "2",
+            "difficulty": "easy"
+
         },
         {
             "question": "Who founded the Simpsons' town?",
@@ -26,7 +19,8 @@ const gameQuestions = {
                 "Zachariah Springfield",
                 "Springfield Manhattan"
             ],
-            "answer": "1"
+            "answer": "1",
+            "difficulty": "medium"
         },
         {
             "question": "What is the name of Lisa's jazz mentor?",
@@ -35,7 +29,8 @@ const gameQuestions = {
                 "Blind Willy Witherspoon",
                 "Bleeding Gums Murphy"
             ],
-            "answer": "2"
+            "answer": "2",
+            "difficulty": "medium"
         },
         {
             "question": "Which one of these is not a catchphrase Bart uses?",
@@ -44,7 +39,9 @@ const gameQuestions = {
                 "Don't have a cow, man!",
                 "Woohoo!"
             ],
-            "answer": "2"
+            "answer": "2",
+            "difficulty": "easy"
+
         },
         {
             "question": "What did the Simpsons get for their first Christmas?",
@@ -53,7 +50,8 @@ const gameQuestions = {
                 "A cat",
                 "A hamster"
             ],
-            "answer": "0"
+            "answer": "0",
+            "difficulty": "medium"
         },
         {
             "question": "What does Bart do in the opening credits?",
@@ -62,7 +60,8 @@ const gameQuestions = {
                 "Play a practical joke on Homer",
                 "Drive Marge's car"
             ],
-            "answer": "0"
+            "answer": "0",
+            "difficulty": "easy"
         },
         {
             "question": "What is the name of the minister at the First Church of Springfield?",
@@ -71,7 +70,8 @@ const gameQuestions = {
                 "Timothy Lovejoy",
                 "Carl Carlson"
             ],
-            "answer": "1"
+            "answer": "1",
+            "difficulty": "medium"
         },
         {
             "question": "Where does Marge hide the Christmas money?",
@@ -80,7 +80,8 @@ const gameQuestions = {
                 "In the glove compartment of her car",
                 "In the attic"
             ],
-            "answer": "0"
+            "answer": "0",
+            "difficulty": "medium"
         },
         {
             "question": "What nationality were the people who bought the power plant from Mr. Burns?",
@@ -89,7 +90,8 @@ const gameQuestions = {
                 "German",
                 "Swiss"
             ],
-            "answer": "1"
+            "answer": "1",
+            "difficulty": "easy"
         },
         {
             "question": "What is the name of Mr. Burns' teddy bear?",
@@ -98,7 +100,9 @@ const gameQuestions = {
                 "Gogo",
                 "Bobo"
             ],
-            "answer": "2"
+            "answer": "2",
+            "difficulty": "easy"
+
         },
         {
             "question": "What did Homer buy Marge for her 34th birthday?",
@@ -107,7 +111,8 @@ const gameQuestions = {
                 "A tackle box",
                 "Bobo"
             ],
-            "answer": "0"
+            "answer": "0",
+            "difficulty": "medium"
         },
         {
             "question": "Which cast member performs the voice of Homer Simpson?",
@@ -116,7 +121,8 @@ const gameQuestions = {
                 "Harry Shearer",
                 "Dan Castellaneta"
             ],
-            "answer": "2"
+            "answer": "2",
+            "difficulty": "hard"
         },
         {
             "question": "Which cast memeber performs the voice of Marge Simpson?",
@@ -125,7 +131,8 @@ const gameQuestions = {
                 "Julie Kavner",
                 "James L. Brooks"
             ],
-            "answer": "1"
+            "answer": "1",
+            "difficulty": "hard"
         },
         {
             "question": "The Simpsons Movie, a feature-length film, grossed over how much money?",
@@ -134,7 +141,8 @@ const gameQuestions = {
                 "$435 Million",
                 "$720 Million"
             ],
-            "answer": "1"
+            "answer": "1",
+            "difficulty": "hard"
         },
         {
             "question": "The Simpsons has how many main cast members?",
@@ -143,7 +151,8 @@ const gameQuestions = {
                 "Seven",
                 "Eight"
             ],
-            "answer": "0"
+            "answer": "0",
+            "difficulty": "medium"
         },
         {
             "question": "Why were the Simpsons characters drawn with yellow skin?",
@@ -152,7 +161,8 @@ const gameQuestions = {
                 "Matt Groening figured they would be more noticable when channel surfing.",
                 "The results of drug trials."
             ],
-            "answer": "1"
+            "answer": "1",
+            "difficulty": "medium"
         },
         {
             "question": "Who served as executive producers during the show's entire history?",
@@ -161,7 +171,8 @@ const gameQuestions = {
                 "Sam Simon and Tim Long.",
                 "Al Jean and Bill Canterbury."
             ],
-            "answer": "0"
+            "answer": "0",
+            "difficulty": "medium"
         },
         {
             "question": "Where did Homer get the idea for his new name, Max Power?",
@@ -170,16 +181,28 @@ const gameQuestions = {
                 "From the Squishee machine at the Kwik-E-Mart",
                 "From a hairdryer"
             ],
-            "answer": "2"
+            "answer": "2",
+            "difficulty": "easy"
         },
         {
-            "question": "Who said ''So I says to Mabel, I says...''",
+            "question": "Who said ''So I says to Mabel, I says...",
             "options": [
                 "Carl",
                 "Lenny",
                 "Bart"
             ],
-            "answer": "2"
+            "answer": "2",
+            "difficulty": "easy"
+        },
+        {
+            "question": "Who provided the voice for Poochie in the Itchy & Scratchy & Poochie show?",
+            "options": [
+                "Troy McClure",
+                "Otto",
+                "Homer"
+            ],
+            "answer": "2",
+            "difficulty": "easy"
         }
     ]
 }

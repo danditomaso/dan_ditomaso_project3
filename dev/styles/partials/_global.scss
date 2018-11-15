@@ -36,6 +36,8 @@ html {
 
 body {
       text-align: center;
+    //   height: 100vh;
+    //   overflow: hidden;
       background: $backgroundColor;
 }
 
@@ -75,12 +77,17 @@ h3 {
     letter-spacing: 3px;
 
 }
-p,li {
+p {
     @include secondaryFont(2.8rem);
     line-height: 29px;
     letter-spacing: .3rem;
 }
 
+.footer li {
+  @include secondaryFont(1.8rem);
+    line-height: 29px;
+    letter-spacing: .3rem;
+}
   
 p,label {
     @include secondaryFont(2.0rem);

@@ -2,11 +2,19 @@ const game = {
     correctAnswer: 0,
     wrongAnswer: 0,
     questionContainer: $('.question-container'),
-    fieldsetContainer: $('.options-fieldset')
+    fieldsetContainer: $('.options-fieldset'),
+    dataSource: triviaQuestionsData.data,
+    questionsAnswered: [],
+    difficulty: {
+        easy: 'easy', questions: 10,
+        medium: 'medium', quesitons: 20,
+        hard: 'hard', questions: 40,
+        selected: 'easy'
+    },
 };
 
 // Get random question.data
-game.getRandomItem = (array) => {
+game.getRandom = (array) => {
     const random = Math.floor(Math.random() * array.length + 1);
     return {
         item: array[random],
@@ -14,29 +22,35 @@ game.getRandomItem = (array) => {
     };
 }
 
-//Display questions to page
-game.getRandomQuestion = () => {
-    const questionReturned = game.getRandomItem(gameQuestions.data);
-    console.log(questionReturned.item);
-    {
-        const question = questionReturned.item.question;
-        const answer = questionReturned.item.answer;
-        const options = questionReturned.item.options;
-        game.displayQuestion(question, options, answer)
-    }
-    // questionReturned.forEach(question => {
-    //     console.log(question)
-    // });
-    // $('').html(`${questionReturned.name`);
-    //     }
+// Get piece of question.data array based on difficulty selected
+game.filterDataOnDifficulty = (array) => {
+    const filteredQuestions = array.filter((item) => {
+        if (item.difficulty === game.difficulty.selected) {
+            console.log(item)
+            return item;
+        }
+    })
+    console.log(filteredQuestions);
+    game.getRandomQuestion(filteredQuestions);
 
 }
 
-game.displayQuestion = (question, options, answer) => {
-    // console.log(options)
+//Display questions to page
+game.getRandomQuestion = (filteredQuestions) => {
+    const returnedQuestions = game.getRandom(filteredQuestions);
+    {
+        let question = returnedQuestions.question;
+        let answer = returnedQuestions.answer;
+        let options = returnedQuestions.options;
+        // console.log(question, options, answer)
+        game.displayQuestion(returnedQuestions)
+    }
+
+}
+
+game.displayQuestion = (returnedQuestions) => {
     game.questionContainer.append(`<h2>Question</h2><p>${question}</p><form>`)
     for (let option of options) {
-        console.log(answer);
 
         // TODO: FIX issue where answer is shown as value of checkbox, need to grab [i] value from each option and add it to value
         const optionHTML = (`
@@ -44,11 +58,25 @@ game.displayQuestion = (question, options, answer) => {
         <input type="radio" name="quiz-options" class="visuallyhidden" id="${option}" value="${answer}">
         `)
         game.questionContainer.append(optionHTML)
+        // game.addEventListeners();
     };
 
-    // game.questionContainer.append(`<h2>Question</h2><div>${question}</div>`)
 
 };
+
+game.addEventListeners = function () {
+    game.questionContainer.on('click', label, function () {
+        // console.log($('this').event);
+    })
+    // $('.card').on('click', function () {
+
+    //     $(this).toggleClass('selected');
+    //     memoryGame.checkForMatch();
+    //     console.log("clicked")
+    //     memoryGame.moveCounter();
+
+    // });
+}
 
 
 // Add Event Listender for answer clicks
@@ -60,6 +88,7 @@ game.reset = () => {
     game.questionReturned.html('');
 }
 game.init = () => {
+    game.filterDataOnDifficulty(game.dataSource);
     game.getRandomQuestion();
 }
 
