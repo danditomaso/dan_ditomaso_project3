@@ -6,6 +6,18 @@
   left: 0;
   right: 0;
 }
+
 .footer li {
   display: inline-block;
+}
+
+.footer span {
+      @include secondaryFont(1.6rem);
+    line-height: 29px;
+    letter-spacing: .3rem;
+}
+.footer li {
+  @include secondaryFont(1.6rem);
+    line-height: 29px;
+    letter-spacing: .3rem;
 }

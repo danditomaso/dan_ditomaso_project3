@@ -1,4 +1,4 @@
-triviaQuestionsData = {
+triviaQuestions = {
     /// Simpsons gameQuestions
     data: [
         {
@@ -141,7 +141,7 @@ triviaQuestionsData = {
                 "$435 Million",
                 "$720 Million"
             ],
-            "answer": "1",
+            "answer": "0",
             "difficulty": "hard"
         },
         {

@@ -29,5 +29,6 @@ gulp.task('bs', () => {
 gulp.task('default', ['bs', 'styles'], () => {
     gulp.watch('dev/**/*.scss', ['styles']);
     gulp.watch('./public/styles/style.css', reload);
+    gulp.watch('./public/scripts/*.js', reload);
     gulp.watch('./*.html', reload);
 });

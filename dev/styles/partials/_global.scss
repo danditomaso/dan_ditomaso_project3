@@ -1,6 +1,8 @@
 $primaryColor: #0C7CC1;
 $backgroundColor: #FED428;
 $offBlackColor: #333;
+$offWhiteColor: #EAEAEA;
+$otoherWhiteColor: #fbfbfb;
 
 @mixin primaryFont($size) {
     color: $primaryColor;
@@ -36,14 +38,14 @@ html {
 
 body {
       text-align: center;
-    //   height: 100vh;
+      height: 100vh;
     //   overflow: hidden;
       background: $backgroundColor;
 }
 
 
 .wrapper {
-    max-width: 1020px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 10%;
 }
@@ -59,84 +61,99 @@ body {
 
 // typography styles
 h1 {
-    @include primaryFont(4rem);
+    @include primaryFont(4.2rem);
     font-weight: bold;
     line-height: 29px;
-    letter-spacing: .7rem;
+    letter-spacing: .9rem;
+    text-shadow: 4px 4px 4px $offBlackColor
 }
 
 h2 {
-    @include primaryFont(2.8rem);
-    line-height: 29px;
-    letter-spacing: .7rem;
-
+    @include primaryFont(3rem);
+    // line-height: 29px;
+    letter-spacing: .9rem;
 }
+
 h3 {
     @include secondaryFont(2.8rem);
-    line-height: 29px;
-    letter-spacing: 3px;
-
+    // line-height: 29px;
+    letter-spacing: .9rem;
 }
+
 p {
     @include secondaryFont(2.8rem);
-    line-height: 29px;
+    // line-height: 29px;
     letter-spacing: .3rem;
 }
 
-.footer li {
-  @include secondaryFont(1.8rem);
-    line-height: 29px;
-    letter-spacing: .3rem;
-}
+// span {
+//     @include secondaryFont(2.4rem);
+//     // line-height: 29px;
+//     letter-spacing: .9rem;
+// }
+
+
   
-p,label {
+p {
     @include secondaryFont(2.0rem);
-    padding: 10px;
 }
 
-input,textarea {
+input {
     border: 0;
     padding: 0;
     margin: 0;
     @include secondaryFont(2.0rem);
-    color: black;
     display: inline-block;
 }
 
-h1,h2{
+h1,h2 {
+    margin: 0;
+    padding: 0;
+    border: 0;
     text-transform: uppercase;
 }
 
 .btn {
     @include primaryFont(2.0rem);
+    background: $primaryColor;
+    color: $backgroundColor;
     text-align: center;
     line-height: 3.2rem;
     letter-spacing: 0.1rem;
     padding: 1rem 3rem;
-    background: $primaryColor;
     border: 1px transparent;
     text-decoration: none;
-    transition: background 0.3s ease, border 0.3s ease;
+    box-shadow: 4px 4px 0 0 $offBlackColor;
+    border-radius: 10%;
+    border: 1px solid transparent; 
+    transition: background 0.2s ease, border 0.2s ease;
     &:hover {
         border: 1px solid $primaryColor;
+        background: $backgroundColor;
+        color: $primaryColor;
     }
 }
 
 li {
     list-style: none;
     text-decoration: none;
-
 }
 
 img {
     width: 100%;
 }
+
 section {
     padding: 75px 0;
 }
 
-.flex-container-column {
+.flex-column {
   display: flex;
   flex-flow: column;
-
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-flow: row;
+  flex-direction: row;
 }

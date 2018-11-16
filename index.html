@@ -5,28 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Head Scratchers - Project 3</title>
+    <title>Simpsons Trivia - Project 3</title>
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz'
         crossorigin='anonymous'>
-    <!-- <link href="https://fonts.googleapis.com/css?family=Cabin|Oswald:400,600,700" rel="stylesheet"> -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link href="https://fonts.googleapis.com/css?family=Archivo:400,500|Chewy|Lato|Montserrat|Oswald:400,500" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="./public/styles/style.css">
 </head>
 
-<body>
+<body class="wrapper">
     <header>
-        <div class="main-header clearfix">
-            <div class="image-container ">
-                <img src="./public/assets/homer-armscrossed.png" alt="">
+        <div class="main-header wrapper flex-row">
+            <div class="main-header-image">
+                <img src="./public/assets/homer-armscrossed-cropped.png" alt="">
             </div>
             <h1 class="main-header-title">Simpsons Trivia</h1>
         </div>
     </header>
-    <main class="wrapper flex-container-column">
-        <div class="question-container">
+    <!-- <aside class="stats-container">
+        <span>Total Questions</span>
+        <span>Score</span>
+        <span>Questions Remaining</span> -->
+    <!-- </aside> -->
+    <main class="flex-column">
+
+        <div class="question-container flex-column">
 
         </div>
         <!-- <div id="music-container">
@@ -36,6 +41,7 @@
     <footer class="footer">
         <nav class="nav">
             <ul class="social-icons">
+                <span>&copy;2018 - Designed By Dan Ditomaso </span>
                 <li>Twitter</li>
                 <li>Github</li>
                 <li>LinkedIn</li>
@@ -46,6 +52,7 @@
         crossorigin='anonymous'></script>
     <script src="./public/scripts/questions.js"></script>
     <script src="./public/scripts/app.js"></script>
+
 </body>
 
 </html>
