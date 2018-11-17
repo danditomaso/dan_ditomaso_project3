@@ -12,7 +12,11 @@ const game = {
         selected: 'easy'
     },
     winner: {
-        poor: '10',
+        poor: '10', src: '../assets/bart-simpson.png',
+        fair: '30', src: '../assets/bart-simpson.png',
+        average: '50', src: '../assets/bart-simpson.png',
+        good: '70', src: '../assets/doctor-hibbert.png',
+        excellent: '90', src: '../assets/bart-simpson.png',
     }
 };
 
@@ -48,10 +52,11 @@ game.displayQuestion = () => {
     if (game.filteredQuestions.length !== 0) {
         const quizQuestions = game.getRandom(game.filteredQuestions);
         console.log(game.filteredQuestions);
-        const { question, options } = quizQuestions.item;
-        game.questionContainer.append(`<h2 class="question-container-title flex-column">Question</h2><p>${question}</p>`)
+        const { question, options, index } = quizQuestions.item;
+        // TODO Make HTML that is appended easier to read, using several vars that append to one another
+        game.questionContainer.append(`<h2 class="question-container-title flex-column">Question #${quizQuestions.index}</h2><p>${question}</p>`)
         options.forEach((item, index) => {
-            const optionHTML = (`<a class="question-container-item">
+            const optionHTML = (`<a class="question-container-item animated fadeIn delay-.5s">
         <label class="option-item" for="${item}">${item}</label></a>
         <input type="radio" name="quiz-options" class="visuallyhidden" id="${item}" value="${index}">
         `)
