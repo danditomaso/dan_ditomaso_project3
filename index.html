@@ -9,42 +9,54 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz'
         crossorigin='anonymous'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Archivo:400,500|Chewy|Lato|Montserrat|Oswald:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Archivo:400,500|Chewy" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="./public/styles/style.css">
 </head>
 
-<body class="wrapper">
-    <header>
-        <div class="main-header wrapper flex-row">
-            <div class="main-header-image">
-                <img src="./public/assets/homer-armscrossed-cropped.png" alt="">
+<body>
+    <header></header>
+    <main>
+        <div class="start-game-container grid">
+            <div class="wrapper">
+                <div class="start-content content-container grid">
+                    <h1 class="fadeInLeft fast animated">The Simpsons Trivia Game</h1>
+                    <h2 class="fadeInLeft delay-1s animated">A perfectly cromulent game</h2>
+                    <p class="start-content-game-details">Welcome to The Simpsons Trivia Game! Your mind will be
+                        embiggened
+                        and delighted while you play this game. Each level has 20 randomized questions to answer, once
+                        complete you will receive your score. It is entirely unpossible to win, so
+                        choose your difficulty level carefully!</p>
+                    <h3 class="select-difficulty">Select Difficulty Level:</h3>
+                    <div class="selectDiff-container">
+                        <label class="question-container-item animated fadeIn" for="easy">Easy</label>
+                        <input type="radio" name="diff-options" class="difficulty-input visuallyhidden" id="easy" value="easy"
+                            required>
+                        <label class="question-container-item animated fadeIn" for="medium">Medium</label>
+                        <input type="radio" name="diff-options" class="difficulty-input visuallyhidden" id="medium"
+                            value="medium" required>
+                        <label class="question-container-item animated fadeIn" for="easy">hard</label>
+                        <input type="radio" name="diff-options" class="difficulty-input visuallyhidden" id="hard" value="hard"
+                            required>
+                    </div>
+                    <div class="start-game-btn">
+                        <a href="./game.html" class="start-game btn">Lets Dum-Diddly Doodily Go!</a>
+                    </div>
+                </div>
             </div>
-            <h1 class="main-header-title">Simpsons Trivia</h1>
-        </div>
-    </header>
-    <!-- <aside class="stats-container">
-        <span>Total Questions</span>
-        <span>Score</span>
-        <span>Questions Remaining</span> -->
-    <!-- </aside> -->
-    <main class="flex-column">
-
-        <div class="question-container flex-column">
 
         </div>
-        <!-- <div id="music-container">
-            <div id="music"><audio src="./public/assets/The Simpsons.mp3" type="audio/mp3" autostart="false" controls></audio></div>
-        </div> -->
+        // Disabled as not to annoy everyone who views this site.
+        <!-- <audio src="./public/assets/TheSimpsons.mp3" type="audio/mp3" autoplay></audio> -->
     </main>
     <footer class="footer">
-        <nav class="nav">
+        <nav class="nav flex-row">
+            <span>&copy;2018 - Designed By Dan Ditomaso </span>
             <ul class="social-icons">
-                <span>&copy;2018 - Designed By Dan Ditomaso </span>
-                <li>Twitter</li>
-                <li>Github</li>
-                <li>LinkedIn</li>
+                <li><a href="//twitter.com/danditomaso"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="//github.com/danditomaso/"><i class="fab fa-github"></i></a></li>
+                <li><a href="//medium.com/@danditomaso"><i class="fab fa-medium"></i></a></li>
             </ul>
         </nav>
     </footer>

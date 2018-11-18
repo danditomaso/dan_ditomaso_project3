@@ -2,7 +2,6 @@ $primaryColor: #0C7CC1;
 $backgroundColor: #FED428;
 $offBlackColor: #333;
 $offWhiteColor: #EAEAEA;
-$otoherWhiteColor: #fbfbfb;
 
 @mixin primaryFont($size) {
     color: $primaryColor;
@@ -41,6 +40,7 @@ body {
       height: 100vh;
     //   overflow: hidden;
       background: $backgroundColor;
+      counter-reset: game-question;
 }
 
 
@@ -69,33 +69,18 @@ h1 {
 }
 
 h2 {
-    @include primaryFont(3rem);
-    // line-height: 29px;
+    @include primaryFont(2.4rem);
     letter-spacing: .9rem;
 }
 
 h3 {
-    @include secondaryFont(2.8rem);
-    // line-height: 29px;
-    letter-spacing: .9rem;
-}
-
-p {
-    @include secondaryFont(2.8rem);
-    // line-height: 29px;
+    @include secondaryFont(1.8rem);
     letter-spacing: .3rem;
 }
 
-// span {
-//     @include secondaryFont(2.4rem);
-//     // line-height: 29px;
-//     letter-spacing: .9rem;
-// }
-
-
-  
 p {
-    @include secondaryFont(2.0rem);
+    @include secondaryFont(1.8rem);
+    letter-spacing: .3rem;
 }
 
 input {
@@ -118,13 +103,14 @@ h1,h2 {
     background: $primaryColor;
     color: $backgroundColor;
     text-align: center;
-    line-height: 3.2rem;
-    letter-spacing: 0.1rem;
+    // line-height: 3.2rem;
+    letter-spacing: 0.2rem;
     padding: 1rem 3rem;
     border: 1px transparent;
     text-decoration: none;
     box-shadow: 4px 4px 0 0 $offBlackColor;
-    border-radius: 10%;
+    border-radius: 5px;
+    padding: 1.5rem;
     border: 1px solid transparent; 
     transition: background 0.2s ease, border 0.2s ease;
     &:hover {
@@ -134,6 +120,7 @@ h1,h2 {
     }
 }
 
+
 li {
     list-style: none;
     text-decoration: none;
@@ -141,11 +128,19 @@ li {
 
 img {
     width: 100%;
+    height: 100%;
+    max-width: 100%;
 }
 
-section {
-    padding: 75px 0;
+.content-container {
+  border-radius: 20px;
+  max-width: 900px;
+  height: 70vh;
+  box-shadow: 4px 4px 0 0 $offBlackColor;
+  background: $offWhiteColor;
+  padding: 0 5%;
 }
+
 
 .flex-column {
   display: flex;
@@ -156,4 +151,8 @@ section {
   display: flex;
   flex-flow: row;
   flex-direction: row;
+}
+
+.grid {
+    display: grid;
 }

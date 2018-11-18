@@ -4,13 +4,13 @@
   position: relative;
   display: flex;
   justify-content: center;
-  width: 100%;
+  margin-bottom: 2rem;
   &-image {
-    height: 60px;
-    width: 60px;
+    // height: 150px;
+    width: 100px;
   }
   &-title {
-    margin-top: 5rem;
+    margin-top: 8rem;
   }
 }
 

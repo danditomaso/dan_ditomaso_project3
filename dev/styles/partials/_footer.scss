@@ -1,23 +1,33 @@
 .footer {
   /* height: 10vh; */
-  background: rgba(51, 51, 51, 0.266);
+  background: rgba(128,128,128, 0.566);
   position: fixed;
+  
   bottom: 0;
   left: 0;
   right: 0;
-}
-
-.footer li {
-  display: inline-block;
-}
-
-.footer span {
-      @include secondaryFont(1.6rem);
-    line-height: 29px;
-    letter-spacing: .3rem;
-}
-.footer li {
+  nav {
+  justify-content: center;
+  align-items: center;
+  }
+  li {
   @include secondaryFont(1.6rem);
+  display: inline-block;
+  margin-right: 5px;
+  line-height: 29px;
+  letter-spacing: .3rem;
+  }
+  
+  i {
+  color: $primaryColor;
+  font-size: 2.0rem;
+  }
+  span {
+    @include secondaryFont(1.6rem);
     line-height: 29px;
     letter-spacing: .3rem;
+    color: $offWhiteColor;
+ }
 }
+ 
+  

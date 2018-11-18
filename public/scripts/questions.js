@@ -1,4 +1,4 @@
-triviaQuestions = {
+const triviaQuestions = {
     /// Simpsons gameQuestions
     data: [
         {
@@ -51,7 +51,7 @@ triviaQuestions = {
                 "A hamster"
             ],
             "answer": "0",
-            "difficulty": "medium"
+            "difficulty": "easy"
         },
         {
             "question": "What does Bart do in the opening credits?",
@@ -203,6 +203,168 @@ triviaQuestions = {
             ],
             "answer": "2",
             "difficulty": "easy"
-        }
+        },
+        {
+            "question": "What did Bart name his pet elephant?",
+            "options": [
+                "Noisy",
+                "Smashy",
+                "Stampy"
+            ],
+            "answer": "2",
+            "difficulty": "easy"
+        },
+        {
+            "question": "What is Chief Wiggum's first name?",
+            "options": [
+                "Cletus",
+                "Clancey",
+                "Charlie"
+            ],
+            "answer": "1",
+            "difficulty": "easy"
+        },
+        {
+            "question": "What is Marge's maiden name?",
+            "options": [
+                "Bouvier",
+                "Croupier",
+                "Smith"
+            ],
+            "answer": "0",
+            "difficulty": "easy"
+        },
+        {
+            "question": "How long was Marge in prison for when she was caught shoplifting?",
+            "options": [
+                "20 Days",
+                "30 Days",
+                "60 Days"
+            ],
+            "answer": "1",
+            "difficulty": "hard"
+        },
+        {
+            "question": "What did Homer smuggle on board the space shuttle?",
+            "options": [
+                "A tub of gummi beers",
+                "A bag of potato chips",
+                "A huge pretzel"
+            ],
+            "answer": "1",
+            "difficulty": "medium"
+        },
+        {
+            "question": "Who did Barney replace in the Be Sharps?",
+            "options": [
+                "Skinner",
+                "Chief Wiggum",
+                "Moe Szyslak"
+            ],
+            "answer": "1",
+            "difficulty": "medium"
+        },
+        {
+            "question": "What does Smithers collect?",
+            "options": [
+                "Star Wars memorabilia",
+                "Romance comics",
+                "Malibu Stacey Dolls"
+            ],
+            "answer": "2",
+            "difficulty": "medium"
+        },
+        {
+            "question": "What is the name of Homer's brother?",
+            "options": [
+                "Hank Powell",
+                "Romance comics",
+                "Malibu Stacey Dolls"
+            ],
+            "answer": "2",
+            "difficulty": "medium"
+        },
+        {
+            "question": "How long was Lisa banned from the Springfield History Museum?",
+            "options": [
+                "One week",
+                "One month",
+                "Three months"
+            ],
+            "answer": "2",
+            "difficulty": "medium"
+        },
+        {
+            "question": "What is Sideshow Bob's middle name?",
+            "options": [
+                "Terwilliger",
+                "Robert",
+                "Bruce"
+            ],
+            "answer": "0",
+            "difficulty": "easy"
+        },
+        {
+            "question": "Which famous person does Marge love to paint?",
+            "options": [
+                "Paul McCartney",
+                "Ringo Starr",
+                "George Harrison"
+            ],
+            "answer": "1",
+            "difficulty": "medium"
+        },
+        {
+            "question": "What is the name of the first Simpsons episode aired in the U.S.?",
+            "options": [
+                "Bart the Genius",
+                "Meet The Simpsons",
+                "An Enchanted Evening"
+            ],
+            "answer": "0",
+            "difficulty": "hard"
+        },
+        {
+            "question": "Who sold a defective monorail system to Springfield?",
+            "options": [
+                "Gil Gunderson",
+                "Lionel Hutz",
+                "Lyle Lanley"
+            ],
+            "answer": "2",
+            "difficulty": "medium"
+        },
+        {
+            "question": "What insect stars on Channel Ocho?",
+            "options": [
+                "Fly",
+                "Bumblebee man",
+                "Bluebottle"
+            ],
+            "answer": "1",
+            "difficulty": "medium"
+        },
+        {
+            "question": "What is the name of the realty firm Homer and Marge used to buy their house?",
+            "options": [
+                "Frozen Shrimp realty",
+                "Blue Blazer realty",
+                "Red Blazer realty"
+            ],
+            "answer": "2",
+            "difficulty": "medium"
+        },
+        {
+            "question": "What was the name of Laura Powers' mother?",
+            "options": [
+                "Ruth",
+                "Mary",
+                "Ashley"
+            ],
+            "answer": "0",
+            "difficulty": "hard"
+        },
+
+
     ]
 }

@@ -144,7 +144,8 @@ html {
 body {
   text-align: center;
   height: 100vh;
-  background: #FED428; }
+  background: #FED428;
+  counter-reset: game-question; }
 
 .wrapper {
   max-width: 1200px;
@@ -174,26 +175,21 @@ h1 {
 h2 {
   color: #0C7CC1;
   font-family: 'Chewy', cursive;
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: bold;
   letter-spacing: .9rem; }
 
 h3 {
   color: #333;
   font-family: 'Archivo', sans-serif;
-  font-size: 2.8rem;
-  letter-spacing: .9rem; }
-
-p {
-  color: #333;
-  font-family: 'Archivo', sans-serif;
-  font-size: 2.8rem;
+  font-size: 1.8rem;
   letter-spacing: .3rem; }
 
 p {
   color: #333;
   font-family: 'Archivo', sans-serif;
-  font-size: 2rem; }
+  font-size: 1.8rem;
+  letter-spacing: .3rem; }
 
 input {
   border: 0;
@@ -218,13 +214,13 @@ h1, h2 {
   background: #0C7CC1;
   color: #FED428;
   text-align: center;
-  line-height: 3.2rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.2rem;
   padding: 1rem 3rem;
   border: 1px transparent;
   text-decoration: none;
   box-shadow: 4px 4px 0 0 #333;
-  border-radius: 10%;
+  border-radius: 5px;
+  padding: 1.5rem;
   border: 1px solid transparent;
   transition: background 0.2s ease, border 0.2s ease; }
   .btn:hover {
@@ -237,10 +233,17 @@ li {
   text-decoration: none; }
 
 img {
-  width: 100%; }
+  width: 100%;
+  height: 100%;
+  max-width: 100%; }
 
-section {
-  padding: 75px 0; }
+.content-container {
+  border-radius: 20px;
+  max-width: 900px;
+  height: 70vh;
+  box-shadow: 4px 4px 0 0 #333;
+  background: #EAEAEA;
+  padding: 0 5%; }
 
 .flex-column {
   display: flex;
@@ -252,36 +255,77 @@ section {
   flex-flow: row;
   flex-direction: row; }
 
+.grid {
+  display: grid; }
+
 .main-header {
   background: #FED428;
   position: relative;
   display: flex;
   justify-content: center;
-  width: 100%; }
+  margin-bottom: 2rem; }
   .main-header-image {
-    height: 60px;
-    width: 60px; }
+    width: 100px; }
   .main-header-title {
-    margin-top: 5rem; }
+    margin-top: 8rem; }
+
+.start-game-container {
+  height: 100vh;
+  width: 100vw;
+  place-items: center;
+  background: url("../assets/thesimpsonstown.jpg") no-repeat center/contain;
+  background-size: auto;
+  background-blend-mode: saturation;
+  margin: 0 auto; }
+
+.start-content {
+  background: #EAEAEA;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  letter-spacing: 0.05; }
+  .start-content h1 {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    margin-top: 2rem; }
+  .start-content h2 {
+    grid-column: 1 / -1;
+    grid-row: 2; }
+  .start-content-game-details {
+    grid-column: 1 / -1;
+    grid-row: 2 / span 4;
+    text-align: left;
+    line-height: 2.3rem;
+    margin-top: 2rem;
+    margin: auto;
+    width: 80%; }
+  .start-content .selectDiff-container {
+    grid-column: 1 / -1;
+    grid-row: 6;
+    padding-top: 25px; }
+    .start-content .selectDiff-container label:nth-of-type(2) {
+      margin: 0 1rem;
+      color: #EAEAEA;
+      background: #0C7CC1;
+      box-shadow: 4px 4px 0 0 #333; }
+  .start-content .start-game-btn {
+    grid-column: 1 / -1;
+    grid-row: 8; }
+  .start-content .select-difficulty {
+    grid-column: 1 / -1;
+    grid-row: 5;
+    margin-top: 100px; }
 
 .question-container {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  margin-top: 15%;
-  max-width: 900px;
-  height: 62vh;
-  box-shadow: 4px 4px 0 0 #333;
-  background: #EAEAEA;
-  padding: 0 5%; }
+  justify-content: center; }
   .question-container-title {
     justify-self: flex-start;
     align-content: flex-start; }
   .question-container-item {
     color: #333;
     font-family: 'Archivo', sans-serif;
-    font-size: 1.8rem;
-    display: block;
+    font-size: 1.6rem;
     margin-bottom: 3rem;
     text-transform: uppercase;
     font-weight: bold;
@@ -289,39 +333,73 @@ section {
     color: #0C7CC1;
     border: 2px solid #0C7CC1;
     border-radius: 5px;
-    padding: 2rem;
+    padding: 1.5rem;
     width: 400px;
     transition: background 0.2s ease, color 0.2s ease; }
     .question-container-item:hover {
       color: #EAEAEA;
       background: #0C7CC1;
       cursor: pointer; }
-  .question-container .selected {
-    color: #EAEAEA;
-    background: #0C7CC1;
-    box-shadow: 4px 4px 0 0 #333; }
+  .question-container-answertext {
+    font-weight: bold; }
+
+.selected {
+  color: #EAEAEA;
+  background: #0C7CC1;
+  box-shadow: 4px 4px 0 0 #333; }
+
+.visable {
+  display: grid; }
+
+.win-container {
+  display: none;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, 1fr); }
+  .win-container-title {
+    grid-column: 1 / span 11;
+    grid-row: 1;
+    padding-top: 30px;
+    align-items: center;
+    justify-content: center; }
+  .win-container-image {
+    grid-column: 1 / span 2;
+    grid-row: 4 / span 8;
+    height: 400px;
+    width: 200px; }
+  .win-container-text-wrapper {
+    grid-column: 5 / span 7;
+    grid-row: 4 / span 3;
+    text-align: left; }
+  .win-container-score {
+    grid-column: 2 / span 11;
+    grid-row: 3;
+    text-align: left; }
 
 .footer {
   /* height: 10vh; */
-  background: rgba(51, 51, 51, 0.266);
+  background: rgba(128, 128, 128, 0.566);
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0; }
-
-.footer li {
-  display: inline-block; }
-
-.footer span {
-  color: #333;
-  font-family: 'Archivo', sans-serif;
-  font-size: 1.6rem;
-  line-height: 29px;
-  letter-spacing: .3rem; }
-
-.footer li {
-  color: #333;
-  font-family: 'Archivo', sans-serif;
-  font-size: 1.6rem;
-  line-height: 29px;
-  letter-spacing: .3rem; }
+  .footer nav {
+    justify-content: center;
+    align-items: center; }
+  .footer li {
+    color: #333;
+    font-family: 'Archivo', sans-serif;
+    font-size: 1.6rem;
+    display: inline-block;
+    margin-right: 5px;
+    line-height: 29px;
+    letter-spacing: .3rem; }
+  .footer i {
+    color: #0C7CC1;
+    font-size: 2.0rem; }
+  .footer span {
+    color: #333;
+    font-family: 'Archivo', sans-serif;
+    font-size: 1.6rem;
+    line-height: 29px;
+    letter-spacing: .3rem;
+    color: #EAEAEA; }
