@@ -5,13 +5,14 @@ const game = {
     questionContainer: $('.question-container'),
     winContainer: $('.win-container'),
     quizSubmitBtn: $('input[type=submit]'),
-    startGameContainer: $('.start-game-btn-container'),
+    startGameContainer: $('.startGameContainer'),
+    startGameBtn: $('.start-game'),
     startGameDiffContainer: $('.select-difficulty'),
     startGameDiffItem: $('.select-difficulty-item'),
     score: $('.score'),
     dataSource: triviaQuestions.data,
     filteredQuestions: [],
-    selectedDifficulty: 'easy',
+    selectedDifficulty: '',
     difficulty: {
         easy: {
             questions: 10
@@ -53,81 +54,84 @@ const game = {
 // Get random question.data
 game.getRandom = (array) => {
     const random = Math.floor(Math.random() * array.length);
-    return {
-        item: array[random],
-    };
+    return array[random]
+
 }
 
-// Get piece of question.data array based on difficulty selected
-game.filterDataOnDifficulty = (array) => {
-    const questionsbyDifficulty = array.filter((item) => {
-        return item.difficulty === game.selectedDifficulty;
+game.getQuestion = (rawQuestions) => {
+    game.filteredQuestions = rawQuestions.filter((item) => {
+        if (item.difficulty === game.selectedDifficulty) {
+            return item;
+        }
     })
-    game.selectQuestions(questionsbyDifficulty);
-}
-
-game.selectQuestions = (array) => {
-    for (let i = 0; i <= game.difficulty[game.selectedDifficulty].questions; i++) {
-        console.log(game.filteredQuestions)
-        game.filteredQuestions.push(array[i])
-    }
     game.displayQuestion();
 }
 
 game.displayQuestion = () => {
-
-    if (game.filteredQuestions.length !== 0) {
-        let quizQuestions = game.getRandom(game.filteredQuestions);
-        // console.log(quizQuestions)
-        const { question, options } = quizQuestions.item;
-        // TODO Make HTML that is appended easier to read, using several vars that append to one another
-        game.questionContainer.append(`<h2 class="question-container-title flex-column">Question #${game.questionNum++}</h2><p>${question}</p>
-        <p class="question-container-answertext">Choose your answer:</p>`)
-        options.forEach((item, index) => {
-            const optionHTML = (`<label class="question-container-item animated fadeIn" for="${item}">${item}</label>
-        <input type="radio" name="quiz-options" class="question-input visuallyhidden" value="${index}" required>
-        `)
-            game.questionContainer.append(optionHTML)
+    const item = game.getRandom(game.filteredQuestions);
+    console.log(item)
+    if (game.questionNum !== game.difficulty[game.selectedDifficulty].questions) {
+        $('.question-container-title').append(`Question #${game.questionNum++}`)
+        $('.question-container-text').append(`${item.question}`)
+        item.options.forEach((option, index) => {
+            const optionHTML = (`<form><label class="question-container-item animated fadeIn" for="quiz-options">${option}</label>
+        <input type="radio" name="quiz-options" class="question-input visuallyhidden" value="${index}" id="quiz-options"></form>`)
+            $('.question-container-answertext').append(optionHTML)
         })
-        game.questionContainer.append(`<input type="submit" class="btn" value="Submit" placeholder="Go">`);
-        game.filteredQuestions.pop();
-        console.log('filtered item popped off array')
+
     }
     else {
         game.displayWinScreen();
     }
 }
 
-// Add Event Listener for user clicks
-game.eventListeners = function () {
-    game.startGameContainer.on('click', 'input[type=radio]', function (e) {
-        e.preventDefault();
-        game.selectedDifficulty = $('.difficulty-input:checked').val();
-    })
-    game.questionContainer.on('click', 'label.question-container-item', function () {
-        $('.question-container-item').removeClass('selected')
-        $(this).toggleClass('selected');
-
-    });
-    game.questionContainer.on('click', 'input[type=submit]', function (e) {
-        e.preventDefault();
-        game.checkAnswer();
-        game.reset();
-        game.displayQuestion();
-    });
-
-    game.startGameDiffContainer.on('click', 'label', function () {
-        $('.select-difficulty-item').removeClass('selected2')
-        $(this).toggleClass('selected2');
-
-    })
-    console.log(game.selectedDifficulty);
-
+function dynamicEvent() {
+    this.innerHTML = 'Dynamic event success.';
+    this.className += ' dynamic-success';
 }
 
+// Add Event Listener for user clicks
+game.eventListeners = function () {
+
+    // As difficulty changes update game property
+    $('input[type=radio]').on('change', function () {
+        game.selectedDifficulty = $('input[type=radio]:checked').val()
+    });
+    // On start of the game, make several CSS and class changes to refresh the window. 
+    $('.start-game').on('click', () => {
+        $('.start-game-container').addClass('animated fadeOutRight');
+        $('.start-game-container').css('display', 'none');
+        $('.main-header').addClass('animated fadeInUp');
+        $('.main-header').css('display', 'flex');
+        $('.question-container').addClass('animated fadeInUp');
+        $('.question-container').css('display', 'flex');
+        game.getQuestion(game.dataSource);
+    });
+    // On each question apply class to provide user feedback
+    $('#questions').on('click', 'label', function () {
+        $('.question-container-item').removeClass("selected");
+        $(this).addClass("selected");
+
+    });
+    // On start screen gather difficulty from label selected
+    $('#start').on('click', 'label', function () {
+        $('.select-difficulty-item').removeClass("selected2")
+        $(this).addClass("selected2");
+    });
+    $('#question-submit').on('click', function () {
+        console.log($(".question-container-item:checked").val())
+    });
+}
+
+
+// $('.question-container-item').each(function (i) {
+//     $(this).on('click', function () {
+//         alert(i)
+//     })
+// }
 // Check for winning answer + add to game.Correct/Wrong object
 game.checkAnswer = function () {
-    console.log($('question-input:checked'));
+    console.log($(".question-container-item:checked").val())
 }
 
 // Once user has gone thorugh all questions, show which simpsons character they relate to most based on their score
@@ -174,7 +178,7 @@ game.reset = () => {
 
 game.init = () => {
     game.eventListeners();
-    game.filterDataOnDifficulty(game.dataSource);
+
 }
 
 

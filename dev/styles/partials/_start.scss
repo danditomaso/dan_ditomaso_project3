@@ -1,4 +1,5 @@
 .start-game-container {
+    z-index: 90;
     height: 100vh;
     width: 100vw;
     place-items: center;
@@ -7,7 +8,11 @@
     background-size: auto;
     background-blend-mode: saturation;
     margin: 0 auto;
-   
+    .selected2 {
+            color: $offWhiteColor;
+            background: $primaryColor;
+            cursor: pointer;
+        }
 }
 
 .start-content {
@@ -58,12 +63,12 @@
         padding: 1.5rem;
         width: 400px;
         transition: background 0.2s ease, color 0.2s ease;
-        &:hover,&:active,&:visited {
-        color: $offWhiteColor;
-        background: $primaryColor;
-        cursor: pointer;
+        &:hover {
+         color: $offWhiteColor;
+            background: $primaryColor;
+            cursor: pointer;
+                }
         }
-     }
     }
     .start-game-btn-container {
         grid-column: 1 / -1;

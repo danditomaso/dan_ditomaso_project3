@@ -2,17 +2,6 @@ const triviaQuestions = {
     /// Simpsons gameQuestions
     data: [
         {
-            "question": "What is the name of the Simpsons' next door neighbor?",
-            "options": [
-                "Barney Gumble",
-                "Ned Flanders",
-                "Principal Skinner"
-            ],
-            "answer": "2",
-            "difficulty": "easy"
-
-        },
-        {
             "question": "Who founded the Simpsons' town?",
             "options": [
                 "Jebadiah Springfield",
@@ -22,16 +11,16 @@ const triviaQuestions = {
             "answer": "1",
             "difficulty": "medium"
         },
-        {
-            "question": "What is the name of Lisa's jazz mentor?",
-            "options": [
-                "Billy Jazzman",
-                "Blind Willy Witherspoon",
-                "Bleeding Gums Murphy"
-            ],
-            "answer": "2",
-            "difficulty": "medium"
-        },
+        // {
+        //     "question": "What is the name of Lisa's jazz mentor?",
+        //     "options": [
+        //         "Billy Jazzman",
+        //         "Blind Willy Witherspoon",
+        //         "Bleeding Gums Murphy"
+        //     ],
+        //     "answer": "2",
+        //     "difficulty": "medium"
+        // },
         {
             "question": "Which one of these is not a catchphrase Bart uses?",
             "options": [
@@ -215,26 +204,6 @@ const triviaQuestions = {
             "difficulty": "easy"
         },
         {
-            "question": "What is Chief Wiggum's first name?",
-            "options": [
-                "Cletus",
-                "Clancey",
-                "Charlie"
-            ],
-            "answer": "1",
-            "difficulty": "easy"
-        },
-        {
-            "question": "What is Marge's maiden name?",
-            "options": [
-                "Bouvier",
-                "Croupier",
-                "Smith"
-            ],
-            "answer": "0",
-            "difficulty": "easy"
-        },
-        {
             "question": "How long was Marge in prison for when she was caught shoplifting?",
             "options": [
                 "20 Days",
@@ -264,16 +233,16 @@ const triviaQuestions = {
             "answer": "1",
             "difficulty": "medium"
         },
-        {
-            "question": "What does Smithers collect?",
-            "options": [
-                "Star Wars memorabilia",
-                "Romance comics",
-                "Malibu Stacey Dolls"
-            ],
-            "answer": "2",
-            "difficulty": "medium"
-        },
+        // {
+        //     "question": "What does Smithers collect?",
+        //     "options": [
+        //         "Star Wars memorabilia",
+        //         "Romance comics",
+        //         "Malibu Stacey Dolls"
+        //     ],
+        //     "answer": "2",
+        //     "difficulty": "medium"
+        // },
         {
             "question": "What is the name of Homer's brother?",
             "options": [
@@ -304,16 +273,16 @@ const triviaQuestions = {
             "answer": "0",
             "difficulty": "easy"
         },
-        {
-            "question": "Which famous person does Marge love to paint?",
-            "options": [
-                "Paul McCartney",
-                "Ringo Starr",
-                "George Harrison"
-            ],
-            "answer": "1",
-            "difficulty": "medium"
-        },
+        // {
+        //     "question": "Which famous person does Marge love to paint?",
+        //     "options": [
+        //         "Paul McCartney",
+        //         "Ringo Starr",
+        //         "George Harrison"
+        //     ],
+        //     "answer": "1",
+        //     "difficulty": "medium"
+        // },
         {
             "question": "What is the name of the first Simpsons episode aired in the U.S.?",
             "options": [
@@ -334,16 +303,16 @@ const triviaQuestions = {
             "answer": "2",
             "difficulty": "medium"
         },
-        {
-            "question": "What insect stars on Channel Ocho?",
-            "options": [
-                "Fly",
-                "Bumblebee man",
-                "Bluebottle"
-            ],
-            "answer": "1",
-            "difficulty": "medium"
-        },
+        // {
+        //     "question": "What insect stars on Channel Ocho?",
+        //     "options": [
+        //         "Fly",
+        //         "Bumblebee man",
+        //         "Bluebottle"
+        //     ],
+        //     "answer": "1",
+        //     "difficulty": "medium"
+        // },
         {
             "question": "What is the name of the realty firm Homer and Marge used to buy their house?",
             "options": [
@@ -362,6 +331,56 @@ const triviaQuestions = {
                 "Ashley"
             ],
             "answer": "0",
+            "difficulty": "hard"
+        },
+        {
+            "question": "How long was Marge in prison for when she was caught shoplifting?",
+            "options": [
+                "20 Days",
+                "30 Days",
+                "60 Days"
+            ],
+            "answer": "1",
+            "difficulty": "hard"
+        },
+        {
+            "question": "How long was Marge in prison for when she was caught shoplifting?",
+            "options": [
+                "20 Days",
+                "30 Days",
+                "60 Days"
+            ],
+            "answer": "1",
+            "difficulty": "hard"
+        },
+        {
+            "question": "How long was Marge in prison for when she was caught shoplifting?",
+            "options": [
+                "20 Days",
+                "30 Days",
+                "60 Days"
+            ],
+            "answer": "1",
+            "difficulty": "hard"
+        },
+        {
+            "question": "How long was Marge in prison for when she was caught shoplifting?",
+            "options": [
+                "20 Days",
+                "30 Days",
+                "60 Days"
+            ],
+            "answer": "1",
+            "difficulty": "hard"
+        },
+        {
+            "question": "How long was Marge in prison for when she was caught shoplifting?",
+            "options": [
+                "20 Days",
+                "30 Days",
+                "60 Days"
+            ],
+            "answer": "1",
             "difficulty": "hard"
         },
 

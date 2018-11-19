@@ -1,8 +1,8 @@
 .question-container {
-  display: flex;
+  display: none;
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
- 
   &-title {
     justify-self: flex-start;
     align-content: flex-start;
@@ -12,6 +12,7 @@
     margin-bottom: 3rem;
     text-transform: uppercase;
     font-weight: bold;
+    display: block;
     letter-spacing: 0.05;
     color: $primaryColor;
     border: 2px solid $primaryColor;
@@ -24,17 +25,15 @@
       background: $primaryColor;
       cursor: pointer;
     }
-   
 }
     &-answertext {
       font-weight: bold;
     }
- 
+}
+   .selected {
+  color: $offWhiteColor;
+  background: $primaryColor;
+  box-shadow: 4px 4px 0 0 $offBlackColor;
 }
 
-.selected {
-      color: $offWhiteColor;
-      background: $primaryColor;
-      box-shadow: 4px 4px 0 0 $offBlackColor;
-}
- 
+
