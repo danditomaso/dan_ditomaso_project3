@@ -141,6 +141,11 @@ img {
   padding: 0 5%;
 }
 
+.selected2 {
+color: $offWhiteColor;
+background: $primaryColor;
+cursor: pointer;
+}
 
 .flex-column {
   display: flex;

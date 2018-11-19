@@ -5,20 +5,22 @@ const game = {
     questionContainer: $('.question-container'),
     winContainer: $('.win-container'),
     quizSubmitBtn: $('input[type=submit]'),
-    startGameBtn: $('a.start-game'),
+    startGameContainer: $('.start-game-btn-container'),
+    startGameDiffContainer: $('.select-difficulty'),
+    startGameDiffItem: $('.select-difficulty-item'),
     score: $('.score'),
     dataSource: triviaQuestions.data,
-    selectedDifficulty: 'medium',
     filteredQuestions: [],
+    selectedDifficulty: 'easy',
     difficulty: {
         easy: {
-            questions: 20
+            questions: 10
         },
         medium: {
-            questions: 20
+            questions: 10
         },
         hard: {
-            questions: 30
+            questions: 10
         },
     },
     winner: [
@@ -37,12 +39,12 @@ const game = {
             src: '../public/assets/doctor-nick.png',
         },
         {
-            score: '70',
+            score: 70,
             src: '../public/assets/lisa-simpson.png',
         },
         {
 
-            score: '90',
+            score: 90,
             src: '../public/assets/professor-frink.png',
         }
     ]
@@ -65,7 +67,8 @@ game.filterDataOnDifficulty = (array) => {
 }
 
 game.selectQuestions = (array) => {
-    for (let i = 0; i < game.difficulty[game.selectedDifficulty].questions; i += 1) {
+    for (let i = 0; i <= game.difficulty[game.selectedDifficulty].questions; i++) {
+        console.log(game.filteredQuestions)
         game.filteredQuestions.push(array[i])
     }
     game.displayQuestion();
@@ -74,15 +77,15 @@ game.selectQuestions = (array) => {
 game.displayQuestion = () => {
 
     if (game.filteredQuestions.length !== 0) {
-        const quizQuestions = game.getRandom(game.filteredQuestions);
-        console.log(quizQuestions)
+        let quizQuestions = game.getRandom(game.filteredQuestions);
+        // console.log(quizQuestions)
         const { question, options } = quizQuestions.item;
         // TODO Make HTML that is appended easier to read, using several vars that append to one another
         game.questionContainer.append(`<h2 class="question-container-title flex-column">Question #${game.questionNum++}</h2><p>${question}</p>
         <p class="question-container-answertext">Choose your answer:</p>`)
         options.forEach((item, index) => {
             const optionHTML = (`<label class="question-container-item animated fadeIn" for="${item}">${item}</label>
-        <input type="radio" name="quiz-options" class="question-input visuallyhidden" id="${item}" value="${index}" required>
+        <input type="radio" name="quiz-options" class="question-input visuallyhidden" value="${index}" required>
         `)
             game.questionContainer.append(optionHTML)
         })
@@ -95,27 +98,36 @@ game.displayQuestion = () => {
     }
 }
 
-// Add Event Listener for answer clicks
+// Add Event Listener for user clicks
 game.eventListeners = function () {
+    game.startGameContainer.on('click', 'input[type=radio]', function (e) {
+        e.preventDefault();
+        game.selectedDifficulty = $('.difficulty-input:checked').val();
+    })
     game.questionContainer.on('click', 'label.question-container-item', function () {
         $('.question-container-item').removeClass('selected')
         $(this).toggleClass('selected');
 
-    })
-    game.questionContainer.on('click', 'input[type=submit]', function () {
+    });
+    game.questionContainer.on('click', 'input[type=submit]', function (e) {
+        e.preventDefault();
         game.checkAnswer();
         game.reset();
         game.displayQuestion();
+    });
+
+    game.startGameDiffContainer.on('click', 'label', function () {
+        $('.select-difficulty-item').removeClass('selected2')
+        $(this).toggleClass('selected2');
+
     })
-    game.startGameBtn.on('click', function () {
-        $('body').fadeOut();
-    })
+    console.log(game.selectedDifficulty);
 
 }
 
 // Check for winning answer + add to game.Correct/Wrong object
 game.checkAnswer = function () {
-    console.log('hit')
+    console.log($('question-input:checked'));
 }
 
 // Once user has gone thorugh all questions, show which simpsons character they relate to most based on their score
@@ -161,8 +173,8 @@ game.reset = () => {
 }
 
 game.init = () => {
-    game.filterDataOnDifficulty(game.dataSource);
     game.eventListeners();
+    game.filterDataOnDifficulty(game.dataSource);
 }
 
 
