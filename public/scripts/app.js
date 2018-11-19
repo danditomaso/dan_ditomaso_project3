@@ -1,6 +1,6 @@
 const game = {
-    correctAnswer: 10,
-    wrongAnswer: 4,
+    correctAnswer: 0,
+    wrongAnswer: 0,
     questionNum: 1,
     questionContainer: $('.question-container'),
     winContainer: $('.win-container'),
@@ -12,7 +12,7 @@ const game = {
     score: $('.score'),
     dataSource: triviaQuestions.data,
     filteredQuestions: [],
-    selectedDifficulty: '',
+    selectedDifficulty: 'easy',
     difficulty: {
         easy: {
             questions: 10
@@ -26,26 +26,21 @@ const game = {
     },
     winner: [
         {
-            score: 10,
-            src: '../public/assets/bart-simpson.png',
+            src: '../assets/bart-simpson.png',
             content: 'Labeled as an "underachiever" by authority figures, Bart rides an academic roller coaster, his grades, running the Loop-the-Loop from "F" to "D-" and back again. But he can be ingenious when the chips are down—as long as his ingenuity is not applied to anything school-related.'
         },
         {
-            score: 30,
             src: '../public/assets/krusty.png',
 
         },
         {
-            score: 50,
             src: '../public/assets/doctor-nick.png',
         },
         {
-            score: 70,
             src: '../public/assets/lisa-simpson.png',
         },
         {
 
-            score: 90,
             src: '../public/assets/professor-frink.png',
         }
     ]
@@ -68,12 +63,11 @@ game.getQuestion = (rawQuestions) => {
 }
 
 game.displayQuestion = () => {
-    const item = game.getRandom(game.filteredQuestions);
-    console.log(item)
+    game.selectedQuestion = game.getRandom(game.filteredQuestions);
     if (game.questionNum !== game.difficulty[game.selectedDifficulty].questions) {
         $('.question-container-title').append(`Question #${game.questionNum++}`)
-        $('.question-container-text').append(`${item.question}`)
-        item.options.forEach((option, index) => {
+        $('.question-container-text').append(`${game.selectedQuestion.question}`)
+        game.selectedQuestion.options.forEach((option, index) => {
             const optionHTML = (`<form><label class="question-container-item animated fadeIn" for="quiz-options">${option}</label>
         <input type="radio" name="quiz-options" class="question-input visuallyhidden" value="${index}" id="quiz-options"></form>`)
             $('.question-container-answertext').append(optionHTML)
@@ -85,13 +79,14 @@ game.displayQuestion = () => {
     }
 }
 
-
 // Add Event Listener for user clicks
 game.eventListeners = function () {
-
-    // As difficulty changes update game property
-    $('input[type=radio]').on('change', function () {
+    // On start screen set user selected difficulty to global object 
+    $("input[type=radio]").on('change', () => {
+        $('input[type=radio]:checked').val()
         game.selectedDifficulty = $('input[type=radio]:checked').val()
+        console.log(game.selectedDifficulty);
+
     });
     // On start of the game, make several CSS and class changes to refresh the window. 
     $('.start-game').on('click', () => {
@@ -114,20 +109,27 @@ game.eventListeners = function () {
         $('.select-difficulty-item').removeClass("selected2")
         $(this).addClass("selected2");
     });
+    // On each quiz question is submitted check to see if answer is correct
     $('#question-submit').on('click', function () {
-        console.log($(".question-container-item:checked").val())
+        // console.log($('.question-input:checked').val())
+        game.checkAnswer()
+        game.reset();
+        game.displayQuestion();
     });
 }
 
-
-// $('.question-container-item').each(function (i) {
-//     $(this).on('click', function () {
-//         alert(i)
-//     })
-// }
 // Check for winning answer + add to game.Correct/Wrong object
 game.checkAnswer = function () {
-    console.log($(".question-container-item:checked").val())
+    // console.log($(".question-input:checked").val())
+    const selectedQuestion = ($(".question-input:checked").val())
+    if (selectedQuestion === game.selectedQuestion.answer) {
+        game.correctAnswer++;
+        // console.log(game.correctAnswer)
+    }
+    else {
+        game.wrongAnswer++;
+        // console.log(game.wrongAnswer)
+    }
 }
 
 // Once user has gone thorugh all questions, show which simpsons character they relate to most based on their score
@@ -136,10 +138,9 @@ game.displayWinScreen = () => {
     $(game.questionContainer).addClass('fadeOutDown fast animated').hide();
     $(game.winContainer).addClass('fadeInLeft fast animated');
     $(game.winContainer).css('display', 'grid');
-    $(game.score).append(`${game.correctAnswer} Out Of ${game.difficulty['game.selected'].questions}</span>`)
-    // const score = game.correctAnswer / game.wrongAnswer * 10;
-    const score = '52';
-    const characterImage = game.calcWinCharacter(score)
+    $('.win-container-score-num').append(`<h3>${game.correctAnswer} Out Of ${game.difficulty[game.selectedDifficulty].questions}</h3>`)
+    let score = game.correctAnswer / game.wrongAnswer * 10;
+    let characterImage = game.calcWinCharacter(score)
     console.log(characterImage, score)
     $('.win-image').attr("src", characterImage);
 }
@@ -169,7 +170,9 @@ game.calcWinCharacter = (score) => {
 
 // Reset game wire up to button on page
 game.reset = () => {
-    game.questionContainer.html('');
+    $('.question-container-title').empty();
+    $('.question-container-text').empty();
+    $('.question-container-answertext').empty();
 }
 
 game.init = () => {

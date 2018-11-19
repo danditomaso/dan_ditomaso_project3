@@ -63,7 +63,7 @@
         padding: 1.5rem;
         width: 400px;
         transition: background 0.2s ease, color 0.2s ease;
-        &:hover {
+        &:hover,&:active,&:focus,&:checked + label {
          color: $offWhiteColor;
             background: $primaryColor;
             cursor: pointer;
