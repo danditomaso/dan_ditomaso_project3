@@ -85,10 +85,6 @@ game.displayQuestion = () => {
     }
 }
 
-function dynamicEvent() {
-    this.innerHTML = 'Dynamic event success.';
-    this.className += ' dynamic-success';
-}
 
 // Add Event Listener for user clicks
 game.eventListeners = function () {
