@@ -275,7 +275,7 @@ img {
   height: 100vh;
   width: 100vw;
   place-items: center;
-  background: url("../assets/thesimpsonstown.jpg") no-repeat center/contain;
+  background: url("../public/assets/thesimpsonstown.jpg") no-repeat center/contain;
   background-size: auto;
   background-blend-mode: saturation;
   margin: 0 auto; }
