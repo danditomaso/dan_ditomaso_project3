@@ -1,187 +1,212 @@
 const game = {
-    correctAnswer: 0,
-    wrongAnswer: 0,
-    questionNum: 1,
-    questionContainer: $('.question-container'),
-    winContainer: $('.win-container'),
-    quizSubmitBtn: $('input[type=submit]'),
-    startGameContainer: $('.startGameContainer'),
-    startGameBtn: $('.start-game'),
-    startGameDiffContainer: $('.select-difficulty'),
-    startGameDiffItem: $('.select-difficulty-item'),
-    score: $('.score'),
-    dataSource: triviaQuestions.data,
-    filteredQuestions: [],
-    selectedDifficulty: 'easy',
-    difficulty: {
-        easy: {
-            questions: 10
-        },
-        medium: {
-            questions: 10
-        },
-        hard: {
-            questions: 10
-        },
+  correctAnswer: 0,
+  wrongAnswer: 0,
+  questionNum: 1,
+  hasGameStarted: false,
+  questionContainer: $(".question-container"),
+  winContainer: $(".win-container"),
+  quizSubmitBtn: $("input[type=submit]"),
+  startGameContainer: $(".startGameContainer"),
+  startGameBtn: $(".start-game"),
+  startGameDiffContainer: $(".select-difficulty"),
+  startGameDiffItem: $(".select-difficulty-item"),
+  score: $(".score"),
+  dataSource: triviaQuestions.data,
+  filteredQuestions: [],
+  userDifficulty: "",
+  difficulty: {
+    easy: {
+      questions: 10
     },
-    winner: [
-        {
-            src: '../assets/bart-simpson.png',
-            content: 'Labeled as an "underachiever" by authority figures, Bart rides an academic roller coaster, his grades, running the Loop-the-Loop from "F" to "D-" and back again. But he can be ingenious when the chips are down—as long as his ingenuity is not applied to anything school-related.'
-        },
-        {
-            src: '../public/assets/krusty.png',
-
-        },
-        {
-            src: '../public/assets/doctor-nick.png',
-        },
-        {
-            src: '../public/assets/lisa-simpson.png',
-        },
-        {
-
-            src: '../public/assets/professor-frink.png',
-        }
-    ]
+    medium: {
+      questions: 10
+    },
+    hard: {
+      questions: 10
+    }
+  },
+  winner: [
+    {
+      src: "../public/assets/bart-simpson.png",
+      content:
+        'Labeled as an "underachiever" by authority figures, Bart rides an academic roller coaster, his grades, running the Loop-the-Loop from "F" to "D-" and back again. But he can be ingenious when the chips are down—as long as his ingenuity is not applied to anything school-related.'
+    },
+    {
+      src: "../public/assets/krusty.png",
+      content: "you got krusty"
+    },
+    {
+      src: "../public/assets/doctor-nick.png",
+      content: "you got doctor nick"
+    },
+    {
+      src: "../public/assets/lisa-simpson.png",
+      content: "you got lisa simpson"
+    },
+    {
+      src: "../public/assets/professor-frink.png",
+      content: "you got professor frink"
+    }
+  ]
 };
 
-// Get random question.data
-game.getRandom = (array) => {
-    const random = Math.floor(Math.random() * array.length);
-    return array[random]
+game.getDataFromDataSource = ({ dataSource }) => {
+  return dataSource;
+};
 
-}
+// Get question.data by difficulty selected
+game.filterByDifficulty = ({ userDifficulty }) => {
+  const rawQuestions = game.getDataFromDataSource(game);
+  const filteredQuestions = rawQuestions.filter(({ difficulty }) => {
+    return difficulty === userDifficulty;
+  });
+  return filteredQuestions;
+};
 
-game.getQuestion = (rawQuestions) => {
-    game.filteredQuestions = rawQuestions.filter((item) => {
-        if (item.difficulty === game.selectedDifficulty) {
-            return item;
-        }
-    })
-    game.displayQuestion();
-}
+game.getRandomQuestions = ({ filteredQuestions, n }) => {
+  const shuffled = filteredQuestions.sort(() => 0.5 - Math.random());
+  return (selected = shuffled.slice(0, n));
+};
 
-game.displayQuestion = () => {
-    game.selectedQuestion = game.getRandom(game.filteredQuestions);
-    if (game.questionNum !== game.difficulty[game.selectedDifficulty].questions) {
-        $('.question-container-title').append(`Question #${game.questionNum++}`)
-        $('.question-container-text').append(`${game.selectedQuestion.question}`)
-        game.selectedQuestion.options.forEach((option, index) => {
-            const optionHTML = (`<form><label class="question-container-item animated fadeIn" for="quiz-options">${option}</label>
-        <input type="radio" name="quiz-options" class="question-input visuallyhidden" value="${index}" id="quiz-options"></form>`)
-            $('.question-container-answertext').append(optionHTML)
-        })
+game.getGameQuestions = () => {
+  const filteredQuestions = game.filterByDifficulty(game);
+  const questionsForRound = game.getRandomQuestions({
+    filteredQuestions,
+    n: game.difficulty[game.userDifficulty].questions
+  });
+  return { questionsForRound };
+  //   game.displayQuestion(game);
+};
 
-    }
-    else {
-        game.displayWinScreen();
-    }
-}
+game.displayQuestions = () => {
+  const { question, options, answer } = game.getGameQuestions();
+  console.log(question, options, answer);
+  let num = 0;
+  if (num !== questions.length) {
+    $(".question-container-title").append(`Question #${num++}`);
+    $(".question-container-text").append(`${question}`);
+    options.forEach((option, index) => {
+      const optionHTML = `<form><label class="question-container-item animated fadeIn" for="quiz-options">${option}</label>
+        <input type="radio" name="quiz-options" class="question-input visuallyhidden" value="${index}" id="quiz-options"></form>`;
+      $(".question-container-answertext").append(optionHTML);
+    });
+    // } else {
+    //   game.displayWinScreen();
+    // }
+  }
+};
+
+game.handleClick = () => {
+  const startGameForm = document.getElementById("start-game-form");
+  startGameForm.addEventListener(
+    "click",
+    function(event) {
+      const { target } = event;
+      // On start screen set user selected difficulty to global object
+      if (target.matches("#start-game-btn")) {
+        event.preventDefault();
+        game.userDifficulty = document.querySelector(
+          ".select-difficulty-input:checked"
+        ).value;
+        console.log(`difficulty has been set to ${game.userDifficulty}`);
+      }
+      // Toggle selected class on difficulty selector
+      else if (target.matches(".select-difficulty-input")) {
+        // Find all elements with selected2 class and remove in preperation to add class to new element
+        startGameForm
+          .querySelectorAll(".selected2")
+          .forEach((elem) => elem.classList.remove("selected2"));
+        const selectedElem = document.querySelector(
+          ".select-difficulty-input:checked"
+        );
+        selectedElem.labels[0].classList.add("selected2");
+      }
+    },
+    false
+  );
+};
 
 // Add Event Listener for user clicks
-game.eventListeners = function () {
-    // On start screen set user selected difficulty to global object 
-    $("input[type=radio]").on('change', () => {
-        $('input[type=radio]:checked').val()
-        game.selectedDifficulty = $('input[type=radio]:checked').val()
-        console.log(game.selectedDifficulty);
-
-    });
-    // On start of the game, make several CSS and class changes to refresh the window. 
-    $('.start-game').on('click', () => {
-        $('.start-game-container').addClass('animated fadeOutRight');
-        $('.start-game-container').css('display', 'none');
-        $('.main-header').addClass('animated fadeInUp');
-        $('.main-header').css('display', 'flex');
-        $('.question-container').addClass('animated fadeInUp');
-        $('.question-container').css('display', 'flex');
-        game.getQuestion(game.dataSource);
-    });
-    // On each question apply class to provide user feedback
-    $('#questions').on('click', 'label', function () {
-        $('.question-container-item').removeClass("selected");
-        $(this).addClass("selected");
-
-    });
-    // On start screen gather difficulty from label selected
-    $('#start').on('click', 'label', function () {
-        $('.select-difficulty-item').removeClass("selected2")
-        $(this).addClass("selected2");
-    });
-    // On each quiz question is submitted check to see if answer is correct
-    $('#question-submit').on('click', function () {
-        // console.log($('.question-input:checked').val())
-        game.checkAnswer()
-        game.reset();
-        game.displayQuestion();
-    });
-}
+game.eventListeners = () => {
+  $("input[type=radio]").on("change", ".select-difficulty", () => {
+    $("input[type=radio]:checked").val();
+    game.userDifficulty = $(".difficulty-input").val();
+  });
+  // On start of the game, make several CSS and class changes to refresh the window.
+  $(".start-game").on("click", () => {
+    $(".start-game-container")
+      .addClass("animated fadeOutRight")
+      .css("display", "none");
+    $(".main-header")
+      .addClass("animated fadeInUp")
+      .css("display", "flex");
+    // $(".main-header");
+    $(".question-container")
+      .addClass("animated fadeInUp")
+      .css("display", "flex");
+  });
+  // On each question apply class to provide user feedback
+  $("#questions").on("click", "label", function() {
+    $(".question-container-item").removeClass("selected");
+    $(this).addClass("selected");
+  });
+};
 
 // Check for winning answer + add to game.Correct/Wrong object
-game.checkAnswer = function () {
-    // console.log($(".question-input:checked").val())
-    const selectedQuestion = ($(".question-input:checked").val())
-    if (selectedQuestion === game.selectedQuestion.answer) {
-        game.correctAnswer++;
-        // console.log(game.correctAnswer)
-    }
-    else {
-        game.wrongAnswer++;
-        // console.log(game.wrongAnswer)
-    }
-}
+game.checkAnswer = ({ selectedQuestion, correctAnswer, wrongAnswer }) => {
+  selectedQuestion = $(".question-input:checked").val();
+  if (selectedQuestion === selectedQuestion.answer) {
+    game.correctAnswer += correctAnswer;
+  } else {
+    game.wrongAnswer += wrongAnswer;
+  }
+};
 
 // Once user has gone thorugh all questions, show which simpsons character they relate to most based on their score
-game.displayWinScreen = () => {
-    console.log('display win screen')
-    $(game.questionContainer).addClass('fadeOutDown fast animated').hide();
-    $(game.winContainer).addClass('fadeInLeft fast animated');
-    $(game.winContainer).css('display', 'grid');
-    $('.win-container-score-num').append(`<h3>${game.correctAnswer} Out Of ${game.difficulty[game.selectedDifficulty].questions}</h3>`)
-    let score = game.correctAnswer / game.wrongAnswer * 10;
-    let characterImage = game.calcWinCharacter(score)
-    console.log(characterImage, score)
-    $('.win-image').attr("src", characterImage);
-}
+game.displayWinScreen = ({ correctAnswer, wrongAnswer }) => {
+  $(game.questionContainer)
+    .addClass("fadeOutDown fast animated")
+    .hide();
+  $(game.winContainer).addClass("fadeInLeft fast animated");
+  $(game.winContainer).css("display", "grid");
+  $(".win-container-score-num").append(
+    `<h3>${correctAnswer} Out Of ${
+      game.difficulty[game.userDifficulty].questions
+    }</h3>`
+  );
+  const score = (correctAnswer / wrongAnswer) * 10;
+  const character = game.calcWinCharacter(game);
+  $(".win-image").attr("src", character.src);
+  $(".win-container-text-wrapper").append(character.content);
+};
 
-game.calcWinCharacter = (score) => {
-    if (score > 10) {
-        return game.winner[0].src
-    }
-
-    else if (score < 31 && score > 50) {
-        return game.winner[1].src
-
-    }
-    else if (score < 51 && score > 70) {
-        return game.winner[2].src;
-
-    }
-    else if (score < 71 && score > 90) {
-        return game.winner[3].src
-
-    }
-    else if (score < 91 && score > 100) {
-        return game.winner[4].src
-
-    }
-}
+game.calcWinCharacter = ({ winner }) => {
+  if (score > 10) {
+    return winner[0];
+  } else if (score < 31 && score > 50) {
+    return winner[1];
+  } else if (score < 51 && score > 70) {
+    return winner[2];
+  } else if (score < 71 && score > 90) {
+    return winner[3];
+  } else if (score < 91 && score > 100) {
+    return winner[4];
+  }
+};
 
 // Reset game wire up to button on page
 game.reset = () => {
-    $('.question-container-title').empty();
-    $('.question-container-text').empty();
-    $('.question-container-answertext').empty();
-}
+  $(".question-container-title").empty();
+  $(".question-container-text").empty();
+  $(".question-container-answertext").empty();
+};
 
 game.init = () => {
-    game.eventListeners();
+  game.handleClick();
+  // game.displayQuestions();
+};
 
-}
-
-
-$(function () {
-    $('body').fadeIn(1000);
-    game.init();
-})
+$(function() {
+  $("body").fadeIn(1000);
+  game.init();
+});

@@ -1,26 +1,26 @@
-$primaryColor: #0C7CC1;
-$backgroundColor: #FED428;
+$primaryColor: #0c7cc1;
+$backgroundColor: #fed428;
 $offBlackColor: #333;
-$offWhiteColor: #EAEAEA;
+$offWhiteColor: #fefefe;
 
 @mixin primaryFont($size) {
-    color: $primaryColor;
-    font-family: 'Chewy', cursive;
-    font-size: $size;
-    font-weight: bold;
+  color: $primaryColor;
+  font-family: "Chewy", cursive;
+  font-size: $size;
+  font-weight: bold;
 }
 
 @mixin secondaryFont($size) {
-    color: $offBlackColor;
-    font-family: 'Archivo', sans-serif;
-    font-size: $size;
+  color: $offBlackColor;
+  font-family: "Archivo", sans-serif;
+  font-size: $size;
 }
-@mixin position($type, $top, $right, $bottom, $left) { 
-    position: $type; 
-    top: $top; 
-    right: $right; 
-    bottom: $bottom; 
-    left: $left; 
+@mixin position($type, $top, $right, $bottom, $left) {
+  position: $type;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
 }
 
 html,
@@ -32,104 +32,105 @@ body {
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-      text-align: center;
-      height: 100vh;
-    //   overflow: hidden;
-      background: $backgroundColor;
-      counter-reset: game-question;
+  text-align: center;
+  height: 100vh;
+  //   overflow: hidden;
+  background: $backgroundColor;
+  counter-reset: game-question;
 }
-
 
 .wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10%;
 }
 
-.visuallyhidden { 
-  position: absolute; 
-  overflow: hidden; 
-  clip: rect(0 0 0 0); 
-  height: 1px; width: 1px; 
-  margin: -1px; padding: 0; border: 0; 
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
-
 
 // typography styles
 h1 {
-    @include primaryFont(4.2rem);
-    font-weight: bold;
-    line-height: 29px;
-    letter-spacing: .9rem;
-    text-shadow: 4px 4px 4px $offBlackColor
+  @include primaryFont(4.2rem);
+  font-weight: bold;
+  line-height: 29px;
+  letter-spacing: 0.9rem;
+  text-shadow: 4px 4px 4px $offBlackColor;
 }
 
 h2 {
-    @include primaryFont(2.4rem);
-    letter-spacing: .9rem;
+  @include primaryFont(2.4rem);
+  letter-spacing: 0.9rem;
 }
 
 h3 {
-    @include secondaryFont(1.8rem);
-    letter-spacing: .3rem;
+  @include secondaryFont(1.8rem);
+  letter-spacing: 0.3rem;
 }
 
 p {
-    @include secondaryFont(1.8rem);
-    letter-spacing: .3rem;
+  @include secondaryFont(1.8rem);
+  letter-spacing: 0.3rem;
 }
 
 input {
-    border: 0;
-    padding: 0;
-    margin: 0;
-    @include secondaryFont(2.0rem);
-    display: inline-block;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  @include secondaryFont(2rem);
+  display: inline-block;
 }
 
-h1,h2 {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    text-transform: uppercase;
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-transform: uppercase;
 }
 
 .btn {
-    @include primaryFont(2.0rem);
-    background: $primaryColor;
-    color: $backgroundColor;
-    text-align: center;
-    // line-height: 3.2rem;
-    letter-spacing: 0.2rem;
-    padding: 1rem 3rem;
-    border: 1px transparent;
-    text-decoration: none;
-    box-shadow: 4px 4px 0 0 $offBlackColor;
-    border-radius: 5px;
-    padding: 1.5rem;
-    border: 1px solid transparent; 
-    transition: background 0.2s ease, border 0.2s ease;
-    &:hover {
-        border: 1px solid $primaryColor;
-        background: $backgroundColor;
-        color: $primaryColor;
-    }
+  @include primaryFont(2rem);
+  background: $primaryColor;
+  color: $backgroundColor;
+  text-align: center;
+  // line-height: 3.2rem;
+  letter-spacing: 0.2rem;
+  padding: 1rem 3rem;
+  border: 1px transparent;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 0 $offBlackColor;
+  border-radius: 5px;
+  padding: 1.5rem;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border 0.2s ease;
+  &:hover {
+    border: 1px solid $primaryColor;
+    background: $backgroundColor;
+    color: $primaryColor;
+  }
 }
 
-
 li {
-    list-style: none;
-    text-decoration: none;
+  list-style: none;
+  text-decoration: none;
 }
 
 img {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
 }
 
 .content-container {
@@ -152,6 +153,20 @@ img {
   flex-direction: row;
 }
 
+.toggle-content {
+  display: none;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
+}
+
+.toggle-content.is-visible {
+  display: block;
+  height: auto;
+  opacity: 1;
+}
+
 .grid {
-    display: grid;
+  display: grid;
 }

@@ -1,95 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Simpsons Trivia - Project 3</title>
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.1/css/all.css' integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz'
-        crossorigin='anonymous'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Archivo:400,500|Chewy" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+      integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Archivo:400,500|Chewy"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-    <link rel="stylesheet" href="./public/styles/style.css">
-</head>
+    <link rel="stylesheet" href="./public/styles/styles.css" />
+  </head>
 
-<body>
+  <body>
     <header class="main-header wrapper">
-        <div class="main-header-image">
-            <img src="./public/assets/homer-armscrossed-cropped.png" alt="">
-        </div>
-        <div class="main-header-title wrapper">
-            <h1 class="main-header-title">Simpsons Trivia</h1>
-        </div>
+      <div class="main-header-image">
+        <img
+          src="./public/assets/homer-armscrossed-cropped.png"
+          alt="Homer character standing with his arms crossed"
+        />
+      </div>
+      <div class="main-header-title wrapper">
+        <h1 class="main-header-title">Simpsons Trivia</h1>
+      </div>
     </header>
-    <main>
-        <div class="start-game-container grid animated" id="start">
-            <div class="wrapper">
-                <div class="start-content content-container grid">
-                    <h1 class="fadeInLeft fast animated">The Simpsons Trivia Game</h1>
-                    <h2 class="fadeInLeft delay-1s animated">A perfectly cromulent game</h2>
-                    <p class="start-content-game-details">Welcome to The Simpsons Trivia Game! Your mind will be
-                        embiggened
-                        and delighted while you play this game. Each level has 20 randomized questions to answer, once
-                        complete you will receive your score. It is entirely unpossible to win, so
-                        choose your difficulty level carefully!</p>
-                    <h3 class="select-difficulty-heading">Select Difficulty Level:</h3>
-                    <div class="select-difficulty">
-                        <label class="select-difficulty-item" for="easy">Easy</label>
-                        <input type="radio" name="diff-options" class="difficulty-input visuallyhidden" id="easy" value="easy">
-                        <label class="select-difficulty-item" for="medium">Medium</label>
-                        <input type="radio" name="diff-options" class="difficulty-input visuallyhidden" id="medium"
-                            value="medium">
-                        <label class="select-difficulty-item" for="hard">hard</label>
-                        <input type="radio" name="diff-options" class="difficulty-input visuallyhidden" id="hard" value="hard">
-                    </div>
-                    <div class="start-game-btn-container">
-                        <a href="#" class="start-game btn animated">Lets Dum-Diddly Doodily Go!</a>
-                    </div>
-                </div>
+    <main id="main">
+      <div class="start-game-container grid animated" id="start">
+        <div class="wrapper">
+          <div class="start-content content-container grid">
+            <h1 class="fadeInLeft fast animated">The Simpsons Trivia Game</h1>
+            <h2 class="fadeInLeft delay-1s animated">
+              A perfectly cromulent game
+            </h2>
+            <p class="start-content-game-details">
+              Welcome to The Simpsons Trivia Game! Your mind will be embiggened
+              and delighted while you play this game. Each level has 10
+              randomized questions to answer, once you complete this quiz you
+              will receive your score. It is entirely unpossible to win, so
+              choose your difficulty level carefully!
+            </p>
+            <h3 class="select-difficulty-heading">Select Difficulty Level:</h3>
+            <div class="select-difficulty">
+              <form action="#" id="start-game-form" class="select-difficulty-form">
+                <input
+                type="radio"
+                name="diff-options"
+                class="select-difficulty-input visuallyhidden"
+                id="easy"
+                value="easy"
+                />
+                <label class="select-difficulty-item" for="easy">Easy</label>
+                <input
+                type="radio"
+                name="diff-options"
+                class="select-difficulty-input visuallyhidden"
+                id="medium"
+                value="medium"
+                />
+                <label class="select-difficulty-item" for="medium">Medium</label>
+                <input
+                type="radio"
+                name="diff-options"
+                class="select-difficulty-input visuallyhidden"
+                id="hard"
+                value="hard"
+                />
+                <label class="select-difficulty-item" for="hard">Hard</label>
+              </div>
+            <div class="start-game-btn-container">
+              <label for="start-game-btn" class="visuallyhidden">Start Game</label>
+              <input type="submit" name="start-game" id="start-game-btn" class="start-game btn animated" value="Start Game" />
             </div>
+            </form>
+          </div>
         </div>
-        <div class="question-container content-container flex-column" id="questions">
-            <h2 class="question-container-title flex-column"></h2>
-            <p class="question-container-text"></p>
-            <p class="question-container-answertext">Choose your answer:</p>
-            <input type="submit" class="question-submit btn" value="Submit" id="question-submit" placeholder="Submit">
+      </div>
+      <div
+        class="question-container content-container flex-column"
+        id="questions"
+      >
+        <h2 class="question-container-title flex-column"></h2>
+        <p class="question-container-text"></p>
+        <p class="question-container-answertext">Choose your answer:</p>
+        <input
+          type="submit"
+          class="question-submit btn"
+          value="Submit"
+          id="question-submit"
+          placeholder="Submit"
+        />
+      </div>
+      <div class="win-container content-container grid">
+        <h2 class="win-container-title">Results</h2>
+        <div class="win-container-image">
+          <img src="" alt="" class="win-image" />
         </div>
-        <div class="win-container content-container grid">
-            <h2 class="win-container-title">Results</h2>
-            <div class="win-container-image">
-                <img src="../public/assets/bart-simpson.png" alt="" class="win-image">
-            </div>
-            <div class="win-container-score">
-                <h2>Score:</h2>
-            </div>
-            <div class="win-container-score-num"></div>
-            <div class="win-container-text-wrapper">
-                <p>Labeled as an "underachiever" by authority figures, Bart rides an academic roller coaster, his
-                    grades, running the
-                    Loop-the-Loop from "F" to "D-" and back again. But he can be ingenious when the chips are down—as
-                    long as his ingenuity
-                    is not applied to anything school-related.</p>
-            </div>
+        <div class="win-container-score"><h2>Score:</h2></div>
+        <div class="win-container-score-num"></div>
+        <div class="win-container-text-wrapper">
+          <p>
+            Labeled as an "underachiever" by authority figures, Bart rides an
+            academic roller coaster, his grades, running the Loop-the-Loop from
+            "F" to "D-" and back again. But he can be ingenious when the chips
+            are down—as long as his ingenuity is not applied to anything
+            school-related.
+          </p>
         </div>
+      </div>
     </main>
     <footer class="footer">
-        <nav class="nav flex-row">
-            <span>&copy;2018 - Designed By Dan Ditomaso </span>
-            <ul class="social-icons">
-                <li><a href="//twitter.com/danditomaso"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="//github.com/danditomaso/"><i class="fab fa-github"></i></a></li>
-                <li><a href="//medium.com/@danditomaso"><i class="fab fa-medium"></i></a></li>
-            </ul>
-        </nav>
+      <nav class="nav flex-row">
+        <span>&copy;2018 - Designed By Dan Ditomaso </span>
+        <ul class="social-icons">
+          <li>
+            <a href="https://twitter.com/danditomaso" target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://github.com/danditomaso/" target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://medium.com/@danditomaso" target="_blank"
+              ><i class="fab fa-medium"></i
+            ></a>
+          </li>
+        </ul>
+      </nav>
     </footer>
-    <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
-        crossorigin='anonymous'></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
     <script src="./public/scripts/questions.js"></script>
     <script src="./public/scripts/app.js"></script>
-
-</body>
-
+  </body>
 </html>
