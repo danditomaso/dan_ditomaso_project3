@@ -290,51 +290,43 @@ img {
 .grid {
   display: grid; }
 
-.main-header {
-  display: none;
-  background: #fed428;
-  position: relative;
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 8vh;
+  background: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   margin-bottom: 2rem; }
-  .main-header-image {
+  .header__image {
     width: 55px; }
-  .main-header-title {
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    margin-top: 2rem; }
 
 .start-game-container {
-  z-index: 90;
-  height: 100vh;
-  width: 100vw;
-  place-items: center;
   background: url("../assets/thesimpsonstown.jpg") no-repeat center/contain;
   background-size: auto;
-  background-blend-mode: saturation;
+  background-blend-mode: lighten;
   margin: 0 auto; }
   .start-game-container .selected2 {
     color: #fefefe;
     background: #0c7cc1;
     cursor: pointer; }
 
-.start-content {
-  background: #fefefe;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  grid-auto-flow: column;
-  letter-spacing: 0.05; }
-  .start-content h1 {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    margin-top: 2rem; }
-  .start-content h2 {
+.start-game {
+  background: #fefefe; }
+  .start-game h2 {
     padding-top: 15px;
     grid-column: 1 / -1;
     grid-row: 2; }
-  .start-content-game-details {
+  .start-game-game-details {
     grid-column: 1 / -1;
     grid-row: 2 / span 4;
     text-align: left;
@@ -342,22 +334,21 @@ img {
     margin-top: 2rem;
     margin: auto;
     width: 80%; }
-  .start-content .select-difficulty {
+  .start-game .select-difficulty {
     grid-column: 1 / -1;
     grid-row: 6;
     padding-top: 25px; }
-    .start-content .select-difficulty label:nth-of-type(2) {
+    .start-game .select-difficulty label:nth-of-type(2) {
       margin: 0 1rem; }
-    .start-content .select-difficulty-heading {
+    .start-game .select-difficulty-heading {
       grid-column: 1 / -1;
       grid-row: 5;
       margin-top: 100px; }
-    .start-content .select-difficulty-item {
+    .start-game .select-difficulty-item {
       color: #333;
       font-family: "Archivo", sans-serif;
       font-size: 1.6rem;
       font-weight: bold;
-      letter-spacing: 0.05;
       color: #0c7cc1;
       border: 2px solid #0c7cc1;
       border-radius: 5px;
@@ -366,14 +357,10 @@ img {
       -webkit-transition: background 0.2s ease, color 0.2s ease;
       -o-transition: background 0.2s ease, color 0.2s ease;
       transition: background 0.2s ease, color 0.2s ease; }
-      .start-content .select-difficulty-item:hover, .start-content .select-difficulty-item:active, .start-content .select-difficulty-item:focus,
-      .start-content .select-difficulty-item:checked + label {
-        color: #fefefe;
-        background: #0c7cc1;
-        cursor: pointer; }
-  .start-content .start-game-btn-container {
+  .start-game .start-game-btn-container {
     grid-column: 1 / -1;
-    grid-row: 8; }
+    grid-row: 8;
+    margin: 2rem 0; }
 
 .question-container {
   display: none;

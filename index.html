@@ -25,70 +25,20 @@
   </head>
 
   <body>
-    <header class="main-header wrapper">
-      <div class="main-header-image">
-        <img
+    <header class="header">
+      <div class="header__image">
+        <!-- <img
           src="./public/assets/homer-armscrossed-cropped.png"
           alt="Homer character standing with his arms crossed"
-        />
+        /> -->
       </div>
-      <div class="main-header-title wrapper">
-        <h1 class="main-header-title">Simpsons Trivia</h1>
+      <div class="header__title">
+        <h1 class="fadeInLeft fast animated">The Simpsons Trivia Game</h1>
       </div>
     </header>
     <main id="main">
-      <div class="start-game-container grid animated" id="start">
-        <div class="wrapper">
-          <div class="start-content content-container grid">
-            <h1 class="fadeInLeft fast animated">The Simpsons Trivia Game</h1>
-            <h2 class="fadeInLeft delay-1s animated">
-              A perfectly cromulent game
-            </h2>
-            <p class="start-content-game-details">
-              Welcome to The Simpsons Trivia Game! Your mind will be embiggened
-              and delighted while you play this game. Each level has 10
-              randomized questions to answer, once you complete this quiz you
-              will receive your score. It is entirely unpossible to win, so
-              choose your difficulty level carefully!
-            </p>
-            <h3 class="select-difficulty-heading">Select Difficulty Level:</h3>
-            <div class="select-difficulty">
-              <form action="#" id="start-game-form" class="select-difficulty-form">
-                <input
-                type="radio"
-                name="diff-options"
-                class="select-difficulty-input visuallyhidden"
-                id="easy"
-                value="easy"
-                required
-                />
-                <label class="select-difficulty-item" for="easy">Easy</label>
-                <input
-                type="radio"
-                name="diff-options"
-                class="select-difficulty-input visuallyhidden"
-                id="medium"
-                value="medium"
-                required
-                />
-                <label class="select-difficulty-item" for="medium">Medium</label>
-                <input
-                type="radio"
-                name="diff-options"
-                class="select-difficulty-input visuallyhidden"
-                id="hard"
-                value="hard"
-                required
-                />
-                <label class="select-difficulty-item" for="hard">Hard</label>
-              </div>
-            <div class="start-game-btn-container">
-              <label for="start-game-btn" class="visuallyhidden">Start Game</label>
-              <input type="submit" name="start-game" id="start-game-btn" class="start-game btn animated" value="Start Game" />
-            </div>
-            </form>
-          </div>
-        </div>
+      <div class="game-container grid animated">
+        <div class="content-container grid" id="content"></div>
       </div>
       <div
         class="question-container content-container flex-column"

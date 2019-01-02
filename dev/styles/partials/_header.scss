@@ -1,23 +1,18 @@
-// Main Header START 
-.main-header {
-  display: none;
-  background: $backgroundColor;
-  position: relative;
-  // display: flex;
+// Main Header START
+.header {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  height: 8vh;
+  background: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   margin-bottom: 2rem;
-  &-image {
+  &__image {
     width: 55px;
-  }
-  &-title {
-    align-items: center;
-    margin-top: 2rem;
   }
 }
 
 // Main Header END
-// Main Header END 
-@media (max-width: 905px) {
-  .main-header {
-  }
-}

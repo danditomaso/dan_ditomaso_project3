@@ -1,16 +1,8 @@
 const game = {
   correctAnswer: 0,
   wrongAnswer: 0,
-  questionNum: 1,
   hasGameStarted: false,
-  questionContainer: $(".question-container"),
-  winContainer: $(".win-container"),
-  quizSubmitBtn: $("input[type=submit]"),
-  startGameContainer: $(".startGameContainer"),
-  startGameBtn: $(".start-game"),
-  startGameDiffContainer: $(".select-difficulty"),
-  startGameDiffItem: $(".select-difficulty-item"),
-  score: $(".score"),
+
   dataSource: triviaQuestions.data,
   filteredQuestions: [],
   userDifficulty: "",
@@ -97,6 +89,7 @@ game.displayQuestions = () => {
 };
 
 game.handleClick = () => {
+  game.showStartScreen();
   const startGameForm = document.getElementById("start-game-form");
   const startGameContainer = document.getElementById("start-game-container");
   startGameForm.addEventListener(
@@ -126,6 +119,52 @@ game.handleClick = () => {
     },
     false
   );
+};
+
+game.showStartScreen = () => {
+  const startContent = {
+    title: "A perfectly cromulent game",
+    details: `Welcome to The Simpsons Trivia Game! Your mind will be embiggened
+              and delighted while you play this game.Each level has 10
+              randomized questions to answer, once you complete this quiz you
+              will receive your score.It is entirely unpossible to win, so
+              choose your difficulty level carefully!`,
+    selectDifficultyTitle: "Select Difficulty Level:",
+    difficultyLevels: ["easy", "medium", "hard"],
+    startBtnTitle: "Start Game"
+  };
+
+  function renderDiffLevels(difficultyLevels) {
+    return `<form action="#" id="start-game-form" class="select-difficulty-form">
+    ${difficultyLevels.map(
+      (difficulty) => `
+        <input type="radio" name="diff-options" class="select-difficulty-input visuallyhidden" id=${difficulty} value=${difficulty} required />
+        <label class="select-difficulty-item" for=${difficulty}>${difficulty}</label>    
+    `
+    )}            
+    `;
+  }
+  const startMarkup = `<h2 class="fadeInLeft delay-1s animated">${
+    game.title
+  }</h2>
+            <p class="start-game-details">${startContent.details}</p>
+            <h3 class="select-difficulty-heading">${
+              startContent.selectDifficultyTitle
+            }</h3>
+            <div class="select-difficulty">
+              ${renderDiffLevels(startContent.difficultyLevels)}
+              </div>
+            <div class="start-game-btn-container">
+              <label for="start-game-btn" class="visuallyhidden">${
+                startContent.startBtnTitle
+              }</label>
+              <input type="submit" name="start-game" id="start-game-btn" class="start-game btn animated" value="${
+                startContent.startBtnTitle
+              }" />
+            </div>
+            </form>`;
+  const contentContainer = document.getElementById("content");
+  contentContainer.innerHTML = startMarkup;
 };
 
 game.showQuestionScreen = () => {
