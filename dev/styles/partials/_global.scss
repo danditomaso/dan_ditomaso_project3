@@ -37,10 +37,7 @@ html {
 
 body {
   text-align: center;
-  height: 100vh;
-  //   overflow: hidden;
   background: $backgroundColor;
-  counter-reset: game-question;
 }
 
 .wrapper {
@@ -65,23 +62,19 @@ h1 {
   @include primaryFont(4.2rem);
   font-weight: bold;
   line-height: 29px;
-  letter-spacing: 0.9rem;
   text-shadow: 4px 4px 4px $offBlackColor;
 }
 
 h2 {
   @include primaryFont(2.4rem);
-  letter-spacing: 0.9rem;
 }
 
 h3 {
   @include secondaryFont(1.8rem);
-  letter-spacing: 0.3rem;
 }
 
 p {
   @include secondaryFont(1.8rem);
-  letter-spacing: 0.3rem;
 }
 
 input {
@@ -100,13 +93,22 @@ h2 {
   text-transform: uppercase;
 }
 
+h1,
+h2,
+p,
+input,
+li,
+a {
+  letter-spacing: 0.3rem;
+}
+
 .btn {
   @include primaryFont(2rem);
   background: $primaryColor;
   color: $backgroundColor;
   text-align: center;
   // line-height: 3.2rem;
-  letter-spacing: 0.2rem;
+  // letter-spacing: 0.2rem;
   padding: 1rem 3rem;
   border: 1px transparent;
   text-decoration: none;
@@ -129,28 +131,19 @@ li {
 
 img {
   width: 100%;
-  height: 100%;
   max-width: 100%;
 }
 
 .content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 20px;
-  max-width: 900px;
-  height: 70vh;
-  box-shadow: 4px 4px 0 0 $offBlackColor;
+  margin: 0 auto;
+  max-width: 80%;
+  // box-shadow: 4px 4px 0 0 $offBlackColor;
   background: $offWhiteColor;
   padding: 0 5%;
-}
-
-.flex-column {
-  display: flex;
-  flex-flow: column;
-  flex-direction: column;
-}
-.flex-row {
-  display: flex;
-  flex-flow: row;
-  flex-direction: row;
 }
 
 .toggle-content {
@@ -165,8 +158,4 @@ img {
   display: block;
   height: auto;
   opacity: 1;
-}
-
-.grid {
-  display: grid;
 }

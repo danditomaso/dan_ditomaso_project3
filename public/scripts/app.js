@@ -144,9 +144,8 @@ game.showStartScreen = () => {
     )}            
     `;
   }
-  const startMarkup = `<h2 class="fadeInLeft delay-1s animated">${
-    game.title
-  }</h2>
+  const startMarkup = `<div className="start-content">
+  <h2 class="fadeInLeft delay-1s animated">${startContent.title}</h2>
             <p class="start-game-details">${startContent.details}</p>
             <h3 class="select-difficulty-heading">${
               startContent.selectDifficultyTitle
@@ -162,7 +161,8 @@ game.showStartScreen = () => {
                 startContent.startBtnTitle
               }" />
             </div>
-            </form>`;
+            </form>
+            </div>`;
   const contentContainer = document.getElementById("content");
   contentContainer.innerHTML = startMarkup;
 };
