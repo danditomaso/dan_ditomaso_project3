@@ -1,0 +1,29 @@
+#content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4%;
+}
+
+.start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__contentGameDetails {
+    width: 80%;
+    text-align: left;
+    margin: 2rem auto;
+  }
+  &__difficultyItem {
+    // text-transform: uppercase;
+  }
+}
+
+.selected2 {
+  color: $backgroundColor;
+  background: $offBlackColor;
+}
+.start-game-container {
+  background: url("../assets/thesimpsonstown.jpg") no-repeat center / contain;
+}

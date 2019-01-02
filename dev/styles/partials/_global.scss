@@ -107,20 +107,10 @@ a {
   background: $primaryColor;
   color: $backgroundColor;
   text-align: center;
-  // line-height: 3.2rem;
-  // letter-spacing: 0.2rem;
-  padding: 1rem 3rem;
-  border: 1px transparent;
-  text-decoration: none;
-  box-shadow: 4px 4px 0 0 $offBlackColor;
-  border-radius: 5px;
   padding: 1.5rem;
-  border: 1px solid transparent;
   transition: background 0.2s ease, border 0.2s ease;
   &:hover {
-    border: 1px solid $primaryColor;
-    background: $backgroundColor;
-    color: $primaryColor;
+    background: lighten($primaryColor, $amount: 20);
   }
 }
 
@@ -135,15 +125,10 @@ img {
 }
 
 .content-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
   margin: 0 auto;
-  max-width: 80%;
-  // box-shadow: 4px 4px 0 0 $offBlackColor;
+  max-width: 70%;
+  height: 70vh;
   background: $offWhiteColor;
-  padding: 0 5%;
 }
 
 .toggle-content {

@@ -218,21 +218,12 @@ a {
   background: #0c7cc1;
   color: #fed428;
   text-align: center;
-  padding: 1rem 3rem;
-  border: 1px transparent;
-  text-decoration: none;
-  -webkit-box-shadow: 4px 4px 0 0 #333;
-  box-shadow: 4px 4px 0 0 #333;
-  border-radius: 5px;
   padding: 1.5rem;
-  border: 1px solid transparent;
   -webkit-transition: background 0.2s ease, border 0.2s ease;
   -o-transition: background 0.2s ease, border 0.2s ease;
   transition: background 0.2s ease, border 0.2s ease; }
   .btn:hover {
-    border: 1px solid #0c7cc1;
-    background: #fed428;
-    color: #0c7cc1; }
+    background: #40aff3; }
 
 li {
   list-style: none;
@@ -243,20 +234,10 @@ img {
   max-width: 100%; }
 
 .content-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 20px;
   margin: 0 auto;
-  max-width: 80%;
-  background: #fefefe;
-  padding: 0 5%; }
+  max-width: 70%;
+  height: 70vh;
+  background: #fefefe; }
 
 .toggle-content {
   display: none;
@@ -284,67 +265,36 @@ img {
   align-items: center;
   height: 8vh;
   background: #333;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   margin-bottom: 2rem; }
   .header__image {
     width: 55px; }
 
-.start-game-container {
-  background: url("../assets/thesimpsonstown.jpg") no-repeat center/contain;
-  background-size: auto;
-  background-blend-mode: lighten;
-  margin: 0 auto; }
-  .start-game-container .selected2 {
+.question-container {
+  display: none; }
+  .question-container:hover {
     color: #fefefe;
     background: #0c7cc1;
     cursor: pointer; }
+  .question-container-answertext {
+    font-weight: bold; }
 
-.start-game {
-  background: #fefefe; }
-  .start-game h2 {
-    padding-top: 15px;
-    grid-column: 1 / -1;
-    grid-row: 2; }
-  .start-game-game-details {
-    grid-column: 1 / -1;
-    grid-row: 2 / span 4;
-    text-align: left;
-    line-height: 2.3rem;
-    margin-top: 2rem;
-    margin: auto;
-    width: 80%; }
-  .start-game .select-difficulty {
-    grid-column: 1 / -1;
-    grid-row: 6;
-    padding-top: 25px; }
-    .start-game .select-difficulty label:nth-of-type(2) {
-      margin: 0 1rem; }
-    .start-game .select-difficulty-heading {
-      grid-column: 1 / -1;
-      grid-row: 5;
-      margin-top: 100px; }
-    .start-game .select-difficulty-item {
-      color: #333;
-      font-family: "Archivo", sans-serif;
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: #0c7cc1;
-      border: 2px solid #0c7cc1;
-      border-radius: 5px;
-      padding: 1.5rem;
-      width: 400px;
-      -webkit-transition: background 0.2s ease, color 0.2s ease;
-      -o-transition: background 0.2s ease, color 0.2s ease;
-      transition: background 0.2s ease, color 0.2s ease; }
-  .start-game .start-game-btn-container {
-    grid-column: 1 / -1;
-    grid-row: 8;
-    margin: 2rem 0; }
+.selected {
+  color: #fefefe;
+  background: #0c7cc1; }
 
-.start-content {
+#content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4%; }
+
+.start {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -358,49 +308,17 @@ img {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center; }
+  .start__contentGameDetails {
+    width: 80%;
+    text-align: left;
+    margin: 2rem auto; }
 
-.question-container {
-  display: none;
-  margin: 0 auto;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center; }
-  .question-container-title {
-    justify-self: flex-start;
-    -ms-flex-line-pack: start;
-    align-content: flex-start; }
-  .question-container-item {
-    color: #333;
-    font-family: "Archivo", sans-serif;
-    font-size: 1.6rem;
-    margin-bottom: 3rem;
-    text-transform: uppercase;
-    font-weight: bold;
-    display: block;
-    letter-spacing: 0.05;
-    color: #0c7cc1;
-    border: 2px solid #0c7cc1;
-    border-radius: 5px;
-    padding: 1.5rem;
-    width: 400px;
-    -webkit-transition: background 0.2s ease, color 0.2s ease;
-    -o-transition: background 0.2s ease, color 0.2s ease;
-    transition: background 0.2s ease, color 0.2s ease; }
-    .question-container-item:hover {
-      color: #fefefe;
-      background: #0c7cc1;
-      cursor: pointer; }
-  .question-container-answertext {
-    font-weight: bold; }
+.selected2 {
+  color: #fed428;
+  background: #333; }
 
-.selected {
-  color: #fefefe;
-  background: #0c7cc1;
-  -webkit-box-shadow: 4px 4px 0 0 #333;
-  box-shadow: 4px 4px 0 0 #333; }
+.start-game-container {
+  background: url("../assets/thesimpsonstown.jpg") no-repeat center/contain; }
 
 .visable {
   display: grid; }

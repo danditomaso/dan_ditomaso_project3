@@ -1,39 +1,17 @@
 .question-container {
   display: none;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-  &-title {
-    justify-self: flex-start;
-    align-content: flex-start;
+  &:hover {
+    color: $offWhiteColor;
+    background: $primaryColor;
+    cursor: pointer;
   }
-  &-item {
-    @include secondaryFont(1.6rem);
-    margin-bottom: 3rem;
-    text-transform: uppercase;
+  &-answertext {
     font-weight: bold;
-    display: block;
-    letter-spacing: 0.05;
-    color: $primaryColor;
-    border: 2px solid $primaryColor;
-    border-radius: 5px;
-    padding: 1.5rem;
-    width: 400px;
-    transition: background 0.2s ease, color 0.2s ease;
-    &:hover {
-      color: $offWhiteColor;
-      background: $primaryColor;
-      cursor: pointer;
-    }
+  }
 }
-    &-answertext {
-      font-weight: bold;
-    }
-}
-   .selected {
+
+.selected {
   color: $offWhiteColor;
   background: $primaryColor;
-  box-shadow: 4px 4px 0 0 $offBlackColor;
+  // box-shadow: 4px 4px 0 0 $offBlackColor;
 }
-
-
