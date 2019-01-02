@@ -98,6 +98,7 @@ game.displayQuestions = () => {
 
 game.handleClick = () => {
   const startGameForm = document.getElementById("start-game-form");
+  const startGameContainer = document.getElementById("start-game-container");
   startGameForm.addEventListener(
     "click",
     function(event) {
@@ -109,6 +110,7 @@ game.handleClick = () => {
           ".select-difficulty-input:checked"
         ).value;
         console.log(`difficulty has been set to ${game.userDifficulty}`);
+        startGameForm.parentNode.removeChild(startGameContainer);
       }
       // Toggle selected class on difficulty selector
       else if (target.matches(".select-difficulty-input")) {
@@ -126,30 +128,8 @@ game.handleClick = () => {
   );
 };
 
-// Add Event Listener for user clicks
-game.eventListeners = () => {
-  $("input[type=radio]").on("change", ".select-difficulty", () => {
-    $("input[type=radio]:checked").val();
-    game.userDifficulty = $(".difficulty-input").val();
-  });
-  // On start of the game, make several CSS and class changes to refresh the window.
-  $(".start-game").on("click", () => {
-    $(".start-game-container")
-      .addClass("animated fadeOutRight")
-      .css("display", "none");
-    $(".main-header")
-      .addClass("animated fadeInUp")
-      .css("display", "flex");
-    // $(".main-header");
-    $(".question-container")
-      .addClass("animated fadeInUp")
-      .css("display", "flex");
-  });
-  // On each question apply class to provide user feedback
-  $("#questions").on("click", "label", function() {
-    $(".question-container-item").removeClass("selected");
-    $(this).addClass("selected");
-  });
+game.showQuestionScreen = () => {
+  // const
 };
 
 // Check for winning answer + add to game.Correct/Wrong object
