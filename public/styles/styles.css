@@ -269,14 +269,13 @@ img {
   .header__image {
     width: 55px; }
 
-.question-container {
-  display: none; }
-  .question-container:hover {
-    color: #fefefe;
-    background: #0c7cc1;
-    cursor: pointer; }
-  .question-container-answertext {
-    font-weight: bold; }
+.question-container:hover {
+  color: #fefefe;
+  background: #0c7cc1;
+  cursor: pointer; }
+
+.question-container-answertext {
+  font-weight: bold; }
 
 .selected {
   color: #fefefe;
@@ -308,6 +307,9 @@ img {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center; }
+  .start__gameBtn {
+    display: block;
+    margin: 5rem auto; }
   .start__contentGameDetails {
     width: 80%;
     text-align: left;

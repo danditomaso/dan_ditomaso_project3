@@ -10,6 +10,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  &__gameBtn {
+    display: block;
+    margin: 5rem auto;
+  }
   &__contentGameDetails {
     width: 80%;
     text-align: left;

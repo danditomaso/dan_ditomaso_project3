@@ -2,7 +2,7 @@ const game = {
   correctAnswer: 0,
   wrongAnswer: 0,
   hasGameStarted: false,
-
+  contentContainer: document.getElementById("content"),
   dataSource: triviaQuestions.data,
   filteredQuestions: [],
   userDifficulty: "",
@@ -67,11 +67,9 @@ game.getGameQuestions = () => {
     n: game.difficulty[game.userDifficulty].questions
   });
   return { questionsForRound };
-  //   game.displayQuestion(game);
 };
 
 game.handleClick = () => {
-  game.showStartScreen();
   const startGameForm = document.getElementById("start__formContainer");
   const startGameContainer = document.getElementById("start");
   startGameForm.addEventListener(
@@ -81,13 +79,12 @@ game.handleClick = () => {
       // On start screen set user selected difficulty to global object
       if (target.matches("#start-game")) {
         event.preventDefault();
-        console.log("hit");
         game.userDifficulty = document.querySelector(
           ".start__difficultyInput:checked"
         ).value;
         console.log(`difficulty has been set to ${game.userDifficulty}`);
-        console.log(startGameContainer);
         startGameContainer.innerHTML = "";
+        game.showQuestionScreen(game);
       }
       // Toggle selected class on difficulty selector
       else if (event.target.matches(".start__difficultyInput")) {
@@ -105,7 +102,68 @@ game.handleClick = () => {
   );
 };
 
-game.showStartScreen = () => {
+// game.displayQuestion = () => {
+//   const { question, options, answer } = game.getGameQuestions();
+//   console.log(question[0], options, answer);
+//   let num = 0;
+//   if (num !== questions.length) {
+//     $(".question-container-title").append(`Question #${num++}`);
+//     $(".question-container-text").append(`${question}`);
+//     options.forEach((option, index) => {
+//       const optionHTML = `<form><label class="question-container-item animated fadeIn" for="quiz-options">${option}</label>
+//         <input type="radio" name="quiz-options" class="question-input visuallyhidden" value="${index}" id="quiz-options"></form>`;
+//       $(".question-container-answertext").append(optionHTML);
+//     });
+//     // } else {
+//     //   game.displayWinScreen();
+//     // }
+//   }
+// };
+
+game.showQuestionScreen = ({ contentContainer }) => {
+  const { questionsForRound: questionContent } = game.getGameQuestions();
+  console.log(questionContent);
+  // questionContent = {
+  //   submitBtnTitle: "Submit",
+  //   optionTitle: "Pick your answer"
+  // };
+  for (let i = 0; i < questionContent.length; i++) {
+    // console.log(questionContent[i]);
+    const { question, options, answer } = questionContent[i];
+    console.log(question, options, answer);
+    function renderAnswers(options) {
+      return `<form action="#" id="start-game-form" class="question-answer-form">
+    ${options.map(
+      (option) => `
+        <input type="radio" name="answer-options" class="question__answerOptionLabel visuallyhidden" id=${option} value=${option} required />
+        <label class="question__answerOptionLabel btn" for=${option}>${option}</label>
+    `
+    )}
+    `;
+    }
+  }
+  const questionMarkup = `
+  <div className="question-content">
+    <p class="question-details"></p>
+    <form>
+      <div class="select-answer">
+        // ${renderAnswers(options)}
+        </div>
+      <div class="question-container">
+        <label for="question-submit-btn animated fadeIn" class="visuallyhidden">${
+          questionContent.submitBtnTitle
+        }</label>
+        <input type="submit" name="question-submit" id="question-submit-btn" class="questions__submitBtn btn animated" value="${
+          questionContent.submitBtnTitle
+        }" />
+      </div>
+  </form>
+  </div>`;
+  console.log(questionMarkup);
+  contentContainer.innerHTML = questionMarkup;
+};
+
+game.showStartScreen = ({ contentContainer }) => {
   const startContent = {
     title: "A perfectly cromulent game",
     details: `Welcome to The Simpsons Trivia Game! Your mind will be embiggened
@@ -140,68 +198,18 @@ game.showStartScreen = () => {
                         ${renderDiffLevels(startContent.difficultyLevels)}
                       </div>
                       <div class="start__gameBtnContainer">
-                        <label for="start__gameBtn" class="visuallyhidden start__startGameLabel">${
+                        <label for="start-game" class="visuallyhidden start__startGameLabel">${
                           startContent.startBtnTitle
                         }</label>
-                        <input type="submit" name="start-game" id="start-game" class="btn animated" value="${
+                        <input type="submit" name="start-game" id="start-game" class="start__gameBtn btn animated" value="${
                           startContent.startBtnTitle
                         }" />
                       </div>
                     </form>
         </div>`;
-  const contentContainer = document.getElementById("content");
+  // const contentContainer = document.getElementById("content");
   // Add HTML markup to DOM
   contentContainer.innerHTML = startMarkup;
-};
-
-game.displayQuestions = () => {
-  const { question, options, answer } = game.getGameQuestions();
-  console.log(question, options, answer);
-  let num = 0;
-  if (num !== questions.length) {
-    $(".question-container-title").append(`Question #${num++}`);
-    $(".question-container-text").append(`${question}`);
-    options.forEach((option, index) => {
-      const optionHTML = `<form><label class="question-container-item animated fadeIn" for="quiz-options">${option}</label>
-        <input type="radio" name="quiz-options" class="question-input visuallyhidden" value="${index}" id="quiz-options"></form>`;
-      $(".question-container-answertext").append(optionHTML);
-    });
-    // } else {
-    //   game.displayWinScreen();
-    // }
-  }
-};
-
-game.showQuestionScreen = () => {
-  const { question, options, answer } = game.getGameQuestions();
-
-  const questionContent = {
-    question,
-    answer,
-    options,
-    submitBtnTitle: "Answer"
-  };
-  `<div className="question-content">
-  <h2 class="fadeInLeft delay-1s animated">${startContent.title}</h2>
-            <p class="start-game-details">${startContent.details}</p>
-            <h3 class="select-difficulty-heading">${
-              startContent.selectDifficultyTitle
-            }</h3>
-            <div class="select-difficulty">
-              ${renderDiffLevels(startContent.difficultyLevels)}
-              </div>
-            <div class="start-game-btn-container">
-              <label for="start-game-btn" class="visuallyhidden">${
-                startContent.startBtnTitle
-              }</label>
-              <input type="submit" name="start-game" id="start-game-btn" class="start-game btn animated" value="${
-                startContent.startBtnTitle
-              }" />
-            </div>
-            </form>
-            </div>`;
-  const contentContainer = document.getElementById("content");
-  contentContainer.innerHTML = questionMarkup;
 };
 
 // Check for winning answer + add to game.Correct/Wrong object
@@ -213,24 +221,6 @@ game.checkAnswer = ({ selectedQuestion, correctAnswer, wrongAnswer }) => {
     game.wrongAnswer += wrongAnswer;
   }
 };
-
-// Once user has gone thorugh all questions, show which simpsons character they relate to most based on their score
-// game.displayWinScreen = ({ correctAnswer, wrongAnswer }) => {
-//   $(game.questionContainer)
-//     .addClass("fadeOutDown fast animated")
-//     .hide();
-//   $(game.winContainer).addClass("fadeInLeft fast animated");
-//   $(game.winContainer).css("display", "grid");
-//   $(".win-container-score-num").append(
-//     `<h3>${correctAnswer} Out Of ${
-//       game.difficulty[game.userDifficulty].questions
-//     }</h3>`
-//   );
-//   const score = (correctAnswer / wrongAnswer) * 10;
-//   const character = game.calcWinCharacter(game);
-//   $(".win-image").attr("src", character.src);
-//   $(".win-container-text-wrapper").append(character.content);
-// };
 
 // game.calcWinCharacter = ({ winner }) => {
 //   if (score > 10) {
@@ -247,13 +237,10 @@ game.checkAnswer = ({ selectedQuestion, correctAnswer, wrongAnswer }) => {
 // };
 
 // Reset game wire up to button on page
-game.reset = () => {
-  $(".question-container-title").empty();
-  $(".question-container-text").empty();
-  $(".question-container-answertext").empty();
-};
+game.reset = () => {};
 
 game.init = () => {
+  game.showStartScreen(game);
   game.handleClick();
 };
 
