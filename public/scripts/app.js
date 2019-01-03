@@ -4,7 +4,7 @@ const game = {
   hasGameStarted: false,
   contentContainer: document.getElementById("content"),
   dataSource: triviaQuestions.data,
-  filteredQuestions: [],
+  questionNum: 0,
   userDifficulty: "",
   difficulty: {
     easy: {
@@ -66,122 +66,97 @@ game.getGameQuestions = () => {
     filteredQuestions,
     n: game.difficulty[game.userDifficulty].questions
   });
-  return { questionsForRound };
+  return [questionsForRound];
 };
 
+// EVENT LISTENERS
 game.handleClick = () => {
-  const startGameForm = document.getElementById("start__formContainer");
-  const startGameContainer = document.getElementById("start");
-  startGameForm.addEventListener(
+  // REGISTER LISTENER FOR START GAME BTN CLICKS
+  const startGameBtn = document.getElementById("start-game");
+  const questionForm = document.getElementById("question__form");
+  // Watch for start button to be clicked and transition to question screen
+  startGameBtn.addEventListener(
     "click",
     function(event) {
-      const { target } = event;
-      // On start screen set user selected difficulty to global object
-      if (target.matches("#start-game")) {
-        event.preventDefault();
-        game.userDifficulty = document.querySelector(
-          ".start__difficultyInput:checked"
-        ).value;
-        console.log(`difficulty has been set to ${game.userDifficulty}`);
-        startGameContainer.innerHTML = "";
-        game.showQuestionScreen(game);
-      }
-      // Toggle selected class on difficulty selector
-      else if (event.target.matches(".start__difficultyInput")) {
-        // Find all elements with selected2 class and remove in preperation to add class to new element
-        startGameForm
-          .querySelectorAll(".selected2")
-          .forEach((elem) => elem.classList.remove("selected2"));
-        const selectedElem = document.querySelector(
-          ".start__difficultyInput:checked"
-        );
-        selectedElem.labels[0].classList.add("selected2");
-      }
+      event.preventDefault();
+      game.startGame();
+    },
+    { once: true }
+  );
+  // Add event listener at top level so submit button can be caught. SHOULD BE REFACTORED
+  game.contentContainer.addEventListener(
+    "click",
+    function(event) {
+      // If the clicked element doesn't have the right selector, bail
+      if (!event.target.matches(".questions__submitBtn")) return;
+      event.preventDefault();
+      console.log("clicked question submit button");
     },
     false
   );
 };
 
-// game.displayQuestion = () => {
-//   const { question, options, answer } = game.getGameQuestions();
-//   console.log(question[0], options, answer);
-//   let num = 0;
-//   if (num !== questions.length) {
-//     $(".question-container-title").append(`Question #${num++}`);
-//     $(".question-container-text").append(`${question}`);
-//     options.forEach((option, index) => {
-//       const optionHTML = `<form><label class="question-container-item animated fadeIn" for="quiz-options">${option}</label>
-//         <input type="radio" name="quiz-options" class="question-input visuallyhidden" value="${index}" id="quiz-options"></form>`;
-//       $(".question-container-answertext").append(optionHTML);
-//     });
-//     // } else {
-//     //   game.displayWinScreen();
-//     // }
-//   }
-// };
+// TRANSITION SCREEN TO QUESTION LIST
+game.startGame = () => {
+  const startGameForm = document.getElementById("start__form");
+  game.userDifficulty = startGameForm.querySelector(
+    ".start__input:checked"
+  ).value;
+  // console.log(game.userDifficulty);
+  game.showQuestionScreen();
+};
 
-game.showQuestionScreen = ({ contentContainer }) => {
-  const { questionsForRound: questionContent } = game.getGameQuestions();
-  console.log(questionContent);
-  // questionContent = {
-  //   submitBtnTitle: "Submit",
-  //   optionTitle: "Pick your answer"
-  // };
-  for (let i = 0; i < questionContent.length; i++) {
-    // console.log(questionContent[i]);
-    const { question, options, answer } = questionContent[i];
-    console.log(question, options, answer);
-    function renderAnswers(options) {
-      return `<form action="#" id="start-game-form" class="question-answer-form">
-    ${options.map(
+// RENDER QUESTION SCREEN
+game.showQuestionScreen = () => {
+  const [questionsForRound] = game.getGameQuestions();
+
+  console.log(questionsForRound);
+  const { question, options, answer } = questionsForRound[game.questionNum];
+  function renderAnswers(options) {
+    return `<form action="#" id="start-game-form" class="question-answer-form">
+    ${options.forEach(
       (option) => `
-        <input type="radio" name="answer-options" class="question__answerOptionLabel visuallyhidden" id=${option} value=${option} required />
-        <label class="question__answerOptionLabel btn" for=${option}>${option}</label>
+        <input type="radio" name="answer-options" class="question__answerInput visuallyhidden animated fadeIn" id="${option}" value="${option}" required />
+        <label class="question__answerOptionLabel animated fadeIn btn" for=${option}>${option}</label>
     `
     )}
     `;
-    }
   }
+
   const questionMarkup = `
-  <div className="question-content">
-    <p class="question-details"></p>
-    <form>
+  <div className="question__content">
+    <p class="question__details animated fadeIn">${question}</p>
+    <p class="question__answerTitle animated fadeIn">${`Pick your answer`}</p>
+    <form id="question__form" class="question__form">
       <div class="select-answer">
-        // ${renderAnswers(options)}
         </div>
-      <div class="question-container">
-        <label for="question-submit-btn animated fadeIn" class="visuallyhidden">${
-          questionContent.submitBtnTitle
-        }</label>
-        <input type="submit" name="question-submit" id="question-submit-btn" class="questions__submitBtn btn animated" value="${
-          questionContent.submitBtnTitle
-        }" />
-      </div>
+        <input type="submit" name="question-submit" id="question-submit" class="questions__submitBtn btn" value="Submit" />
+        <label for="question-submit" class="animated fadeIn visuallyhidden">Submit</label>
   </form>
   </div>`;
-  console.log(questionMarkup);
-  contentContainer.innerHTML = questionMarkup;
+  game.contentContainer.innerHTML = questionMarkup;
 };
 
+// RENDER START SCREEN
 game.showStartScreen = ({ contentContainer }) => {
   const startContent = {
-    title: "A perfectly cromulent game",
+    title: `A perfectly cromulent game`,
     details: `Welcome to The Simpsons Trivia Game! Your mind will be embiggened
               and delighted while you play this game.Each level has 10
               randomized questions to answer, once you complete this quiz you
               will receive your score.It is entirely unpossible to win, so
               choose your difficulty level carefully!`,
-    selectDifficultyTitle: "Select Difficulty Level:",
+    selectDifficultyTitle: `Select Difficulty Level:`,
     difficultyLevels: ["easy", "medium", "hard"],
-    startBtnTitle: "Start Game"
+    startBtnTitle: `Start Game`
   };
 
   function renderDiffLevels(difficultyLevels) {
     return `<form action="#" id="start-game-form" class="select-difficulty-form">
     ${difficultyLevels.map(
       (difficulty) => `
-        <input type="radio" name="diff-options" class="start__difficultyInput visuallyhidden" id=${difficulty} value=${difficulty} required />
-        <label class="start__difficultyItem btn" for=${difficulty}>${difficulty}</label>    
+        <input type="radio" name="diff-options" class="start__input btn" id=${difficulty} value=${difficulty} required />
+        <label class="start__difficultyLabel btn" for=${difficulty}>${difficulty}</label>    
     `
     )}            
     `;
@@ -193,7 +168,7 @@ game.showStartScreen = ({ contentContainer }) => {
             <h3 class="start__difficultyHeading">${
               startContent.selectDifficultyTitle
             }</h3>
-                    <form id="start__formContainer">
+                    <form id="start__form">
                       <div class="start__selectDifficulty">
                         ${renderDiffLevels(startContent.difficultyLevels)}
                       </div>
@@ -236,16 +211,44 @@ game.checkAnswer = ({ selectedQuestion, correctAnswer, wrongAnswer }) => {
 //   }
 // };
 
-// Reset game wire up to button on page
-game.reset = () => {};
+// game.clearDOM = (element) => {
+//   document.getElementById(element).innerHTML = "";
+// };
 
+// Credit for this function goes to http://bdadam.com/blog/plain-javascript-event-delegation.html
+function on(elSelector, eventName, selector, fn) {
+  let element = document.querySelector(elSelector);
+
+  element.addEventListener(eventName, function(event) {
+    let possibleTargets = element.querySelectorAll(selector);
+    let target = event.target;
+
+    for (let i = 0, l = possibleTargets.length; i < l; i++) {
+      let el = target;
+      let p = possibleTargets[i];
+
+      while (el && el !== element) {
+        if (el === p) {
+          return fn.call(p, event);
+        }
+
+        el = el.parentNode;
+      }
+    }
+  });
+}
+
+// Reset game wire up to button on page
+game.resetGame = () => {};
+
+// INIT
 game.init = () => {
   game.showStartScreen(game);
   game.handleClick();
 };
 
-document.addEventListener("DOMContentLoaded", function(event) {
+// DOCUMENT READY
+document.addEventListener("DOMContentLoaded", function() {
   console.log("DOM fully loaded and parsed");
-  $("body").fadeIn(1000);
   game.init();
 });

@@ -269,14 +269,6 @@ img {
   .header__image {
     width: 55px; }
 
-.question-container:hover {
-  color: #fefefe;
-  background: #0c7cc1;
-  cursor: pointer; }
-
-.question-container-answertext {
-  font-weight: bold; }
-
 .selected {
   color: #fefefe;
   background: #0c7cc1; }
