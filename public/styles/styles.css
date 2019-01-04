@@ -223,7 +223,7 @@ a {
   -o-transition: background 0.2s ease, border 0.2s ease;
   transition: background 0.2s ease, border 0.2s ease; }
   .btn:hover {
-    background: #40aff3; }
+    background: #063e61; }
 
 li {
   list-style: none;
@@ -313,6 +313,10 @@ img {
 
 .start-game-container {
   background: url("../assets/thesimpsonstown.jpg") no-repeat center/contain; }
+
+input:checked + label,
+input:checked + label:hover {
+  background: #333; }
 
 .visable {
   display: grid; }

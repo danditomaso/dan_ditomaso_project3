@@ -31,3 +31,8 @@
 .start-game-container {
   background: url("../assets/thesimpsonstown.jpg") no-repeat center / contain;
 }
+
+input:checked + label,
+input:checked + label:hover {
+  background: $offBlackColor;
+}

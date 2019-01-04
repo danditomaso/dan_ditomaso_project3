@@ -1,10 +1,10 @@
 const game = {
   correctAnswer: 0,
   wrongAnswer: 0,
-  hasGameStarted: false,
   contentContainer: document.getElementById("content"),
   dataSource: triviaQuestions.data,
   questionNum: 0,
+  currentQuestion: {},
   userDifficulty: "",
   difficulty: {
     easy: {
@@ -73,7 +73,7 @@ game.getGameQuestions = () => {
 game.handleClick = () => {
   // REGISTER LISTENER FOR START GAME BTN CLICKS
   const startGameBtn = document.getElementById("start-game");
-  const questionForm = document.getElementById("question__form");
+
   // Watch for start button to be clicked and transition to question screen
   startGameBtn.addEventListener(
     "click",
@@ -90,7 +90,7 @@ game.handleClick = () => {
       // If the clicked element doesn't have the right selector, bail
       if (!event.target.matches(".questions__submitBtn")) return;
       event.preventDefault();
-      console.log("clicked question submit button");
+      game.checkAnswer();
     },
     false
   );
@@ -104,37 +104,6 @@ game.startGame = () => {
   ).value;
   // console.log(game.userDifficulty);
   game.showQuestionScreen();
-};
-
-// RENDER QUESTION SCREEN
-game.showQuestionScreen = () => {
-  const [questionsForRound] = game.getGameQuestions();
-
-  console.log(questionsForRound);
-  const { question, options, answer } = questionsForRound[game.questionNum];
-  function renderAnswers(options) {
-    return `<form action="#" id="start-game-form" class="question-answer-form">
-    ${options.forEach(
-      (option) => `
-        <input type="radio" name="answer-options" class="question__answerInput visuallyhidden animated fadeIn" id="${option}" value="${option}" required />
-        <label class="question__answerOptionLabel animated fadeIn btn" for=${option}>${option}</label>
-    `
-    )}
-    `;
-  }
-
-  const questionMarkup = `
-  <div className="question__content">
-    <p class="question__details animated fadeIn">${question}</p>
-    <p class="question__answerTitle animated fadeIn">${`Pick your answer`}</p>
-    <form id="question__form" class="question__form">
-      <div class="select-answer">
-        </div>
-        <input type="submit" name="question-submit" id="question-submit" class="questions__submitBtn btn" value="Submit" />
-        <label for="question-submit" class="animated fadeIn visuallyhidden">Submit</label>
-  </form>
-  </div>`;
-  game.contentContainer.innerHTML = questionMarkup;
 };
 
 // RENDER START SCREEN
@@ -155,7 +124,7 @@ game.showStartScreen = ({ contentContainer }) => {
     return `<form action="#" id="start-game-form" class="select-difficulty-form">
     ${difficultyLevels.map(
       (difficulty) => `
-        <input type="radio" name="diff-options" class="start__input btn" id=${difficulty} value=${difficulty} required />
+        <input type="radio" name="diff-options" class="start__input btn visuallyhidden" id=${difficulty} value=${difficulty} required />
         <label class="start__difficultyLabel btn" for=${difficulty}>${difficulty}</label>    
     `
     )}            
@@ -187,13 +156,57 @@ game.showStartScreen = ({ contentContainer }) => {
   contentContainer.innerHTML = startMarkup;
 };
 
+// RENDER QUESTION SCREEN
+game.showQuestionScreen = () => {
+  // if (game.questionNum === 0) {
+  const [questionsForRound] = game.getGameQuestions();
+  // } else {
+  const { question, options } = questionsForRound[game.questionNum];
+
+  game.currentQuestion = questionsForRound[game.questionNum];
+  function renderQuestionAnswers(options) {
+    return `<form action="#" id="start-game-form" class="question-answer-form">
+    ${options.map(
+      (option) => `
+        <input type="radio" name="answer-options" class="question__answerInput animated fadeIn" id="${option}" value="${option}" required />
+        <label class="question__answerOptionLabel animated fadeIn btn" for="${option}">${option}</label>
+    `
+    )}
+    `;
+  }
+
+  const questionMarkup = `
+  <div className="question__content">
+    <p class="question__details animated fadeIn">${question}</p>
+    <p class="question__answerTitle animated fadeIn">${`Pick your answer:`}</p>
+    <form id="question__form" class="question__form">
+      <div class="select-answer">
+          ${renderQuestionAnswers(options)}
+        </div>
+        <input type="submit" name="question-submit" id="question-submit" class="questions__submitBtn btn" value="Submit" />
+        <label for="question-submit" class="animated fadeIn visuallyhidden">Submit</label>
+  </form>
+  </div>`;
+  game.contentContainer.innerHTML = questionMarkup;
+  // }
+};
+
 // Check for winning answer + add to game.Correct/Wrong object
-game.checkAnswer = ({ selectedQuestion, correctAnswer, wrongAnswer }) => {
-  selectedQuestion = $(".question-input:checked").val();
-  if (selectedQuestion === selectedQuestion.answer) {
-    game.correctAnswer += correctAnswer;
+game.checkAnswer = () => {
+  const questionForm = document.getElementById("question__form");
+  const userAnswer = questionForm.querySelector(
+    ".question__answerInput:checked"
+  ).value;
+  game.questionNum += 1;
+  // console.log(userAnswer);
+  if (userAnswer === game.currentQuestion.answer) {
+    console.log("Correct");
+    game.correctAnswer += 1;
+    game.showQuestionScreen(game.questionNum);
   } else {
-    game.wrongAnswer += wrongAnswer;
+    console.log("Wrong!");
+    game.wrongAnswer += 1;
+    game.showQuestionScreen(game.questionNum);
   }
 };
 

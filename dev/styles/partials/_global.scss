@@ -110,7 +110,7 @@ a {
   padding: 1.5rem;
   transition: background 0.2s ease, border 0.2s ease;
   &:hover {
-    background: lighten($primaryColor, $amount: 20);
+    background: darken($primaryColor, $amount: 20);
   }
 }
 
