@@ -102,7 +102,6 @@ game.startGame = () => {
   game.userDifficulty = startGameForm.querySelector(
     ".start__input:checked"
   ).value;
-  // console.log(game.userDifficulty);
   game.showQuestionScreen();
 };
 
@@ -120,7 +119,7 @@ game.showStartScreen = ({ contentContainer }) => {
     startBtnTitle: `Start Game`
   };
 
-  function renderDiffLevels(difficultyLevels) {
+  renderDiffLevels = (difficultyLevels) => {
     return `<form action="#" id="start-game-form" class="select-difficulty-form">
     ${difficultyLevels.map(
       (difficulty) => `
@@ -129,7 +128,7 @@ game.showStartScreen = ({ contentContainer }) => {
     `
     )}            
     `;
-  }
+  };
   const startMarkup = `
           <div className="start" id="start">
             <h2 class="fadeInLeft delay-1s animated">${startContent.title}</h2>
@@ -162,8 +161,9 @@ game.showQuestionScreen = () => {
   const [questionsForRound] = game.getGameQuestions();
   // } else {
   const { question, options } = questionsForRound[game.questionNum];
-
   game.currentQuestion = questionsForRound[game.questionNum];
+  console.log(questionsForRound);
+
   function renderQuestionAnswers(options) {
     return `<form action="#" id="start-game-form" class="question-answer-form">
     ${options.map(
@@ -198,7 +198,6 @@ game.checkAnswer = () => {
     ".question__answerInput:checked"
   ).value;
   game.questionNum += 1;
-  // console.log(userAnswer);
   if (userAnswer === game.currentQuestion.answer) {
     console.log("Correct");
     game.correctAnswer += 1;
@@ -232,7 +231,7 @@ game.checkAnswer = () => {
 function on(elSelector, eventName, selector, fn) {
   let element = document.querySelector(elSelector);
 
-  element.addEventListener(eventName, function(event) {
+  element.addEventListener(eventName, (event) => {
     let possibleTargets = element.querySelectorAll(selector);
     let target = event.target;
 
