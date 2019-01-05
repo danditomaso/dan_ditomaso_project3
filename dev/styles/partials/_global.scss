@@ -1,49 +1,36 @@
-$primaryColor: #0c7cc1;
-$backgroundColor: #fed428;
-$offBlackColor: #333;
-$offWhiteColor: #fefefe;
-
 @mixin primaryFont($size) {
   color: $primaryColor;
   font-family: "Chewy", cursive;
   font-size: $size;
-  font-weight: bold;
+  text-align: center;
 }
 
 @mixin secondaryFont($size) {
   color: $offBlackColor;
   font-family: "Archivo", sans-serif;
   font-size: $size;
+  text-align: center;
 }
-@mixin position($type, $top, $right, $bottom, $left) {
-  position: $type;
-  top: $top;
-  right: $right;
-  bottom: $bottom;
-  left: $left;
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 html {
   font-size: 62.5%;
 }
 
 body {
-  text-align: center;
-  background: $backgroundColor;
+  height: 100vh;
+  min-height: 600px;
+  color: $textColor;
+  font-size: 1.8rem;
+  // overflow-y: scroll;
+}
+
+header {
+  display: block;
+  // min-height: 10vh;
 }
 
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 10%;
 }
 
 .visuallyhidden {
@@ -56,21 +43,30 @@ body {
   padding: 0;
   border: 0;
 }
+h1,
+h2,
+h3,
+p,
+ul,
+li,
+input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
 
 // typography styles
 h1 {
-  @include primaryFont(4.2rem);
-  font-weight: bold;
-  line-height: 29px;
-  text-shadow: 4px 4px 4px $offBlackColor;
+  @include primaryFont(6rem);
+  // text-shadow: 4px 4px 4px $offBlackColor;
 }
 
 h2 {
-  @include primaryFont(2.4rem);
+  @include primaryFont(3rem);
 }
 
 h3 {
-  @include secondaryFont(1.8rem);
+  @include primaryFont(2.4rem);
 }
 
 p {
@@ -78,18 +74,11 @@ p {
 }
 
 input {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  @include secondaryFont(2rem);
   display: inline-block;
 }
 
 h1,
 h2 {
-  margin: 0;
-  padding: 0;
-  border: 0;
   text-transform: uppercase;
 }
 
@@ -99,10 +88,12 @@ p,
 input,
 li,
 a {
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.4rem;
 }
 
 .btn {
+  display: inline-block;
+  margin: 1rem 0;
   @include primaryFont(2rem);
   background: $primaryColor;
   color: $backgroundColor;
@@ -110,7 +101,7 @@ a {
   padding: 1.5rem;
   transition: background 0.2s ease, border 0.2s ease;
   &:hover {
-    background: darken($primaryColor, $amount: 20);
+    background: lighten($primaryColor, $amount: 10);
   }
 }
 
@@ -122,25 +113,4 @@ li {
 img {
   width: 100%;
   max-width: 100%;
-}
-
-.content-container {
-  margin: 0 auto;
-  max-width: 70%;
-  height: 70vh;
-  background: $offWhiteColor;
-}
-
-.toggle-content {
-  display: none;
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
-}
-
-.toggle-content.is-visible {
-  display: block;
-  height: auto;
-  opacity: 1;
 }

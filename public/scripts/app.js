@@ -72,12 +72,13 @@ game.getGameQuestions = () => {
 // EVENT LISTENERS
 game.handleClick = () => {
   // REGISTER LISTENER FOR START GAME BTN CLICKS
-  const startGameBtn = document.getElementById("start-game");
+  const startGameForm = document.getElementById("start__form");
 
   // Watch for start button to be clicked and transition to question screen
-  startGameBtn.addEventListener(
-    "click",
+  startGameForm.addEventListener(
+    "submit",
     function(event) {
+      console.log("a submit occured");
       event.preventDefault();
       game.startGame();
     },
@@ -123,7 +124,7 @@ game.showStartScreen = ({ contentContainer }) => {
     return `<form action="#" id="start-game-form" class="select-difficulty-form">
     ${difficultyLevels.map(
       (difficulty) => `
-        <input type="radio" name="diff-options" class="start__input btn visuallyhidden" id=${difficulty} value=${difficulty} required />
+        <input type="radio" name="diff-choices" class="start__input btn visuallyhidden" id=${difficulty} value=${difficulty} required />
         <label class="start__difficultyLabel btn" for=${difficulty}>${difficulty}</label>    
     `
     )}            
@@ -160,15 +161,15 @@ game.showQuestionScreen = () => {
   // if (game.questionNum === 0) {
   const [questionsForRound] = game.getGameQuestions();
   // } else {
-  const { question, options } = questionsForRound[game.questionNum];
+  const { question, choices } = questionsForRound[game.questionNum];
   game.currentQuestion = questionsForRound[game.questionNum];
   console.log(questionsForRound);
 
-  function renderQuestionAnswers(options) {
+  function renderQuestionAnswers(choices) {
     return `<form action="#" id="start-game-form" class="question-answer-form">
-    ${options.map(
+    ${choices.map(
       (option) => `
-        <input type="radio" name="answer-options" class="question__answerInput animated fadeIn" id="${option}" value="${option}" required />
+        <input type="radio" name="answer-choices" class="question__answerInput animated fadeIn" id="${option}" value="${option}" required />
         <label class="question__answerOptionLabel animated fadeIn btn" for="${option}">${option}</label>
     `
     )}
@@ -181,7 +182,7 @@ game.showQuestionScreen = () => {
     <p class="question__answerTitle animated fadeIn">${`Pick your answer:`}</p>
     <form id="question__form" class="question__form">
       <div class="select-answer">
-          ${renderQuestionAnswers(options)}
+          ${renderQuestionAnswers(choices)}
         </div>
         <input type="submit" name="question-submit" id="question-submit" class="questions__submitBtn btn" value="Submit" />
         <label for="question-submit" class="animated fadeIn visuallyhidden">Submit</label>
@@ -228,27 +229,6 @@ game.checkAnswer = () => {
 // };
 
 // Credit for this function goes to http://bdadam.com/blog/plain-javascript-event-delegation.html
-function on(elSelector, eventName, selector, fn) {
-  let element = document.querySelector(elSelector);
-
-  element.addEventListener(eventName, (event) => {
-    let possibleTargets = element.querySelectorAll(selector);
-    let target = event.target;
-
-    for (let i = 0, l = possibleTargets.length; i < l; i++) {
-      let el = target;
-      let p = possibleTargets[i];
-
-      while (el && el !== element) {
-        if (el === p) {
-          return fn.call(p, event);
-        }
-
-        el = el.parentNode;
-      }
-    }
-  });
-}
 
 // Reset game wire up to button on page
 game.resetGame = () => {};

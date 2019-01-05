@@ -1,14 +1,7 @@
 // Header START
 .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 8vh;
   background: $offBlackColor;
-  margin-bottom: 2rem;
-  &__image {
-    width: 55px;
-  }
+  height: 10vh;
 }
 
 // Header END

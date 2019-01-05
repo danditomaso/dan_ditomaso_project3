@@ -26,50 +26,65 @@
 
   <body>
     <header class="header">
-      <div class="header__image">
-        <!-- <img
-          src="./public/assets/homer-armscrossed-cropped.png"
-          alt="Homer character standing with his arms crossed"
-        /> -->
-      </div>
-      <div class="header__title">
-        <h1 class="fadeInLeft fast animated">The Simpsons Trivia Game</h1>
+      <div class="wrapper">
+        <div class="header__image"></div>
+        <div class="header__title">
+          <h1 class="fadeInLeft fast animated">The Simpsons Trivia Game</h1>
+        </div>
       </div>
     </header>
     <main id="main">
-      <div class="overlay">
+      <div class="wrapper">
         <div class="game-container animated">
           <div class="content-container" id="content"></div>
         </div>
       </div>
     </main>
     <footer class="footer">
-      <nav class="nav">
-        <span>Designed By Dan Ditomaso &copy;2019</span>
-        <ul class="social-icons">
-          <li>
-            <a href="https://twitter.com/danditomaso" target="_blank"
-              ><i class="fab fa-twitter"></i
-            ></a>
-          </li>
-          <li>
-            <a href="https://github.com/danditomaso/" target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-          </li>
-          <li>
-            <a href="https://medium.com/@danditomaso" target="_blank"
-              ><i class="fab fa-medium"></i
-            ></a>
-          </li>
-        </ul>
-      </nav>
+      <div class="wrapper">
+        <nav class="nav">
+          <span>&copy;2019 Dan Ditomaso</span>
+          <ul class="social-nav">
+            <!-- Github icon/link -->
+            <li class="social-nav__item">
+              <a
+                href="https://github.com/danditomaso"
+                target="_blank"
+                class="social-nav__link"
+                ><i class="fab fa-github social-nav__icon"></i
+              ></a>
+            </li>
+            <!-- LinkedIn icon/link -->
+            <li class="social-nav__item">
+              <a
+                href="https://www.linkedin.com/in/danditomaso/"
+                target="_blank"
+                class="social-nav__link"
+                ><i class="fab fa-linkedin-in social-nav__icon"></i
+              ></a>
+            </li>
+            <!-- Medium icon/link -->
+            <li class="social-nav__item">
+              <a
+                href="https://medium.com/@danditomaso"
+                target="_blank"
+                class="social-nav__link"
+                ><i class="fab fa-medium social-nav__icon"></i
+              ></a>
+            </li>
+            <!-- Twitter icon/link -->
+            <li class="social-nav__item">
+              <a
+                href="https://twitter.com/danditomaso"
+                target="_blank"
+                class="social-nav__link"
+                ><i class="fab fa-twitter social-nav__icon"></i
+              ></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </footer>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"
-    ></script>
     <script src="./public/scripts/questions.js"></script>
     <script src="./public/scripts/app.js"></script>
   </body>
