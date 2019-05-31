@@ -48,22 +48,22 @@ game.getDataFromDataSource = ({ dataSource }) => {
 
 // Get question.data by difficulty selected
 game.filterByDifficulty = ({ userDifficulty }) => {
-  const rawQuestions = game.getDataFromDataSource(game);
-  const filteredQuestions = rawQuestions.filter(({ difficulty }) => {
+  const rawData = game.getDataFromDataSource(game);
+  const filteredData = rawData.filter(({ difficulty }) => {
     return difficulty === userDifficulty;
   });
-  return filteredQuestions;
+  return filteredData;
 };
 
-game.getRandomQuestions = ({ filteredQuestions, n }) => {
-  const shuffled = filteredQuestions.sort(() => 0.5 - Math.random());
-  return (selected = shuffled.slice(0, n));
+game.getRandomQuestions = ({ filteredData, n }) => {
+  const shuffled = filteredData.sort(() => 0.5 - Math.random());
+  return (tempSelectedData = shuffled.slice(0, n));
 };
 
 game.getGameQuestions = () => {
-  const filteredQuestions = game.filterByDifficulty(game);
+  const filteredData = game.filterByDifficulty(game);
   const questionsForRound = game.getRandomQuestions({
-    filteredQuestions,
+    filteredData,
     n: game.difficulty[game.userDifficulty].questions
   });
   return [questionsForRound];

@@ -20,6 +20,7 @@ body {
   min-height: 600px;
   color: $textColor;
   font-size: 1.8rem;
+  background: $secondaryColor;
   // overflow-y: scroll;
 }
 
@@ -96,7 +97,7 @@ a {
   margin: 1rem 0;
   @include primaryFont(2rem);
   background: $primaryColor;
-  color: $backgroundColor;
+  color: $secondaryColor;
   text-align: center;
   padding: 1.5rem;
   transition: background 0.2s ease, border 0.2s ease;
